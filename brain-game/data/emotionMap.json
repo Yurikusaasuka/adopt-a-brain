@@ -1,0 +1,47 @@
+{
+  "mappings": [
+    {
+      "emotion": "pleasure",
+      "positive": [
+        { "region": "basal_ganglia", "weight": 0.8 },
+        { "region": "amygdala", "weight": 0.5 }
+      ],
+      "negative": []
+    },
+    {
+      "emotion": "stress",
+      "positive": [
+        { "region": "amygdala", "weight": 0.9 },
+        { "region": "cingulate", "weight": 0.7 }
+      ],
+      "negative": [
+        { "region": "prefrontal", "weight": 0.5 }
+      ]
+    },
+    {
+      "emotion": "cognitive",
+      "positive": [
+        { "region": "prefrontal", "weight": 0.9 },
+        { "region": "hippocampus", "weight": 0.7 },
+        { "region": "thalamus", "weight": 0.6 }
+      ],
+      "negative": []
+    },
+    {
+      "emotion": "social",
+      "positive": [
+        { "region": "prefrontal", "weight": 0.6 },
+        { "region": "amygdala", "weight": 0.6 }
+      ],
+      "negative": []
+    },
+    {
+      "emotion": "creative",
+      "positive": [
+        { "region": "prefrontal", "weight": 0.7 },
+        { "region": "cingulate", "weight": 0.8 }
+      ],
+      "negative": []
+    }
+  ]
+}

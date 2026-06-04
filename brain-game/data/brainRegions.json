@@ -1,0 +1,67 @@
+{
+  "regions": [
+    {
+      "id": "prefrontal",
+      "name_zh": "前额叶皮层",
+      "name_en": "Prefrontal Cortex",
+      "color_base": [60, 120, 220],
+      "color_active": [100, 180, 255],
+      "description_zh": "负责决策、规划和自我控制",
+      "description_en": "Decision making, planning, self-control"
+    },
+    {
+      "id": "amygdala",
+      "name_zh": "杏仁核",
+      "name_en": "Amygdala",
+      "color_base": [220, 60, 80],
+      "color_active": [255, 100, 120],
+      "description_zh": "处理情绪反应，尤其是恐惧和愉悦",
+      "description_en": "Emotional responses, fear and pleasure"
+    },
+    {
+      "id": "hippocampus",
+      "name_zh": "海马体",
+      "name_en": "Hippocampus",
+      "color_base": [60, 180, 120],
+      "color_active": [100, 255, 160],
+      "description_zh": "记忆形成与空间导航",
+      "description_en": "Memory formation and spatial navigation"
+    },
+    {
+      "id": "basal_ganglia",
+      "name_zh": "基底核",
+      "name_en": "Basal Ganglia",
+      "color_base": [200, 160, 40],
+      "color_active": [255, 220, 80],
+      "description_zh": "奖励回路、运动控制",
+      "description_en": "Reward circuits, motor control"
+    },
+    {
+      "id": "cerebellum",
+      "name_zh": "小脑",
+      "name_en": "Cerebellum",
+      "color_base": [140, 60, 200],
+      "color_active": [200, 120, 255],
+      "description_zh": "运动协调与平衡",
+      "description_en": "Motor coordination and balance"
+    },
+    {
+      "id": "thalamus",
+      "name_zh": "丘脑",
+      "name_en": "Thalamus",
+      "color_base": [60, 200, 200],
+      "color_active": [100, 255, 255],
+      "description_zh": "感觉信号中继站",
+      "description_en": "Sensory signal relay station"
+    },
+    {
+      "id": "cingulate",
+      "name_zh": "扣带回",
+      "name_en": "Cingulate Cortex",
+      "color_base": [220, 100, 180],
+      "color_active": [255, 160, 220],
+      "description_zh": "注意力、情绪调节与痛感",
+      "description_en": "Attention, emotion regulation, pain"
+    }
+  ]
+}

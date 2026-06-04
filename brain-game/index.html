@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>领养一颗大脑 / Adopt a Brain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --title-h: 36px;
+      --gap: 3px;
+      /* Right-col squares: half of remaining height */
+      --sq: min(50vw - 4px, calc((100vh - var(--title-h)) / 2 - 4px));
+      /* Left-col squares: 43% of remaining height so 2 squares + EEG strip (~14%) all fit */
+      --sq-l: calc((100vh - var(--title-h) - 2 * var(--gap)) * 0.43);
+      --panel-bg: rgba(2, 14, 28, 0.84);
+      --border-c: rgba(0, 190, 220, 0.11);
+      --border-c-bright: rgba(0, 200, 240, 0.22);
+    }
+
+    body {
+      background: #020d1a;
+      color: #c8d8e8;
+      font-family: 'Press Start 2P', monospace;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      image-rendering: pixelated;
+    }
+
+    /* ── Bubble background canvas ── */
+    #canvas-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      display: block;
+    }
+
+    /* ── Title bar ── */
+    #title-bar {
+      position: relative;
+      z-index: 1;
+      height: var(--title-h);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      border-bottom: 1px solid var(--border-c-bright);
+      background: rgba(1, 8, 18, 0.92);
+    }
+    #title-zh {
+      font-size: clamp(10px, 1.1vw, 18px);
+      color: #88ffcc;
+      text-shadow: 0 0 10px rgba(0,255,160,0.5);
+      letter-spacing: 2px;
+    }
+    #title-sep { color: rgba(0,190,220,0.2); }
+    #title-en { font-size: clamp(6px, 0.55vw, 9px); color: #2a5a4a; }
+
+    /* ── Game area — two columns ── */
+    #game-area {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      flex: 1;
+      min-height: 0;
+      gap: var(--gap);
+      padding: var(--gap);
+      overflow: hidden;
+    }
+
+    /* ── Columns ── */
+    #left-col, #right-col {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      gap: var(--gap);
+    }
+    #left-col  { width: var(--sq-l); align-self: stretch; }
+    #right-col { width: var(--sq); }
+
+    /* ── Generic panel ── */
+    .panel {
+      display: flex;
+      flex-direction: column;
+      background: var(--panel-bg);
+      border: 1px solid var(--border-c);
+      overflow: hidden;
+      min-width: 0;
+      position: relative;
+    }
+    .panel-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 3px 8px 2px;
+      border-bottom: 1px solid var(--border-c);
+      flex-shrink: 0;
+      background: rgba(1, 8, 18, 0.6);
+    }
+    .ph-zh { font-size: clamp(5px, 0.62vw, 10px); color: #3a8870; }
+    .ph-en { font-size: clamp(4px, 0.46vw, 8px);  color: #1a3a40; }
+
+    /* ── Canvas wrapper ── */
+    .canvas-wrap {
+      flex: 1;
+      min-height: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .canvas-wrap canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      image-rendering: pixelated;
+    }
+
+    /* ── EEG (top-left, fills remaining height) ── */
+    #eeg-panel { flex: 1; min-height: 0; }
+    #eeg-mode-tag {
+      position: absolute;
+      top: 4px; right: 6px;
+      font-size: clamp(5px, 0.55vw, 9px);
+      color: rgba(0,80,0,0.9);
+      pointer-events: none;
+    }
+
+    /* ── Right-col squares ── */
+    #brain-panel, #control-panel {
+      width: var(--sq);
+      height: var(--sq);
+      flex-shrink: 0;
+    }
+    /* ── Left-col squares (smaller: fits 2 squares + EEG strip) ── */
+    #fmri-panel, #axial-panel {
+      height: var(--sq-l);
+      flex-shrink: 0;
+    }
+
+    /* ── Region legend (inside brain panel) ── */
+    #region-legend {
+      flex-shrink: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1px 8px;
+      padding: 3px 7px;
+      border-top: 1px solid var(--border-c);
+      background: rgba(1,8,18,0.6);
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: clamp(4px, 0.48vw, 8px);
+      color: #2a4450;
+    }
+    .legend-dot {
+      width: 6px; height: 6px;
+      image-rendering: pixelated;
+      flex-shrink: 0;
+    }
+
+    /* ── Control panel interior ── */
+    #brain-name-display {
+      flex-shrink: 0;
+      font-size: clamp(7px, 0.95vw, 16px);
+      color: #ddcc77;
+      text-shadow: 0 0 6px rgba(180,140,0,0.5);
+      text-align: center;
+      padding: 6px 10px 5px;
+      border-bottom: 1px solid var(--border-c);
+      background: rgba(1,8,18,0.6);
+    }
+    #event-card {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 10px 13px 6px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0,190,220,0.15) transparent;
+    }
+    #event-card::-webkit-scrollbar { width: 3px; }
+    #event-card::-webkit-scrollbar-thumb { background: rgba(0,190,220,0.2); }
+    #event-title-zh {
+      font-size: clamp(8px, 1.15vw, 18px);
+      color: #bcd4f4;
+      line-height: 1.7;
+      margin-bottom: 4px;
+    }
+    #event-title-en {
+      font-size: clamp(6px, 0.6vw, 10px);
+      color: #2a4462;
+      margin-bottom: 10px;
+    }
+    #event-desc-zh {
+      font-size: clamp(7px, 0.82vw, 13px);
+      color: #6a8eaa;
+      line-height: 1.9;
+      margin-bottom: 5px;
+    }
+    #event-desc-en {
+      font-size: clamp(5px, 0.56vw, 9px);
+      color: #2a3e52;
+      line-height: 1.6;
+    }
+
+    /* ── Emotion bar ── */
+    #emotion-bar {
+      flex-shrink: 0;
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      padding: 4px 8px;
+      border-top: 1px solid var(--border-c);
+      background: rgba(1,8,18,0.5);
+    }
+    .emotion-chip {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 6px;
+      border: 1px solid rgba(0,100,120,0.2);
+      background: rgba(2,12,24,0.7);
+    }
+    .emotion-chip.active {
+      border-color: rgba(0,190,220,0.3);
+    }
+    .chip-labels {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .chip-zh { font-size: clamp(5px, 0.6vw, 9px);  color: #3a5870; }
+    .chip-en { font-size: clamp(4px, 0.44vw, 7px);  color: #1e3040; }
+    .chip-arrow {
+      font-size: clamp(7px, 0.85vw, 13px);
+      opacity: 0;
+      transition: opacity 0.25s;
+      line-height: 1;
+    }
+    .chip-arrow.active { opacity: 1; }
+    .chip-arrow.up   { color: #ff5566; text-shadow: 0 0 5px rgba(255,60,80,0.6); }
+    .chip-arrow.down { color: #44ee88; text-shadow: 0 0 5px rgba(40,220,120,0.6); }
+
+    /* ── Option buttons ── */
+    #options-container {
+      flex-shrink: 0;
+      display: flex;
+      gap: 5px;
+      padding: 5px 8px;
+      border-top: 1px solid var(--border-c);
+      flex-wrap: wrap;
+    }
+    .option-btn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(6px, 0.68vw, 11px);
+      background: rgba(6, 16, 38, 0.9);
+      color: #7aa0cc;
+      border: 1px solid rgba(60,100,180,0.35);
+      padding: 7px 9px;
+      cursor: pointer;
+      flex: 1;
+      min-width: 100px;
+      line-height: 1.7;
+      transition: background 0.08s, border-color 0.08s;
+    }
+    .option-btn:hover {
+      background: rgba(14, 28, 68, 0.95);
+      border-color: rgba(80,140,255,0.6);
+      color: #b8d4ff;
+    }
+    .option-btn:active { background: rgba(22, 42, 100, 0.95); }
+
+    /* ── Feedback ── */
+    #feedback-zone {
+      flex-shrink: 0;
+      padding: 4px 10px 6px;
+      border-top: 1px solid var(--border-c);
+      background: rgba(1,8,18,0.5);
+      min-height: 28px;
+    }
+    #feedback-text {
+      font-size: clamp(6px, 0.72vw, 12px);
+      color: #66ffaa;
+      text-align: center;
+      text-shadow: 0 0 5px rgba(0,200,120,0.5);
+      line-height: 1.6;
+    }
+    #feedback-en {
+      font-size: clamp(5px, 0.5vw, 8px);
+      color: #205038;
+      text-align: center;
+      margin-top: 2px;
+    }
+
+    /* ── Name prompt overlay ── */
+    #name-prompt {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 8, 18, 0.97);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      z-index: 100;
+    }
+    #name-prompt h1 {
+      font-size: clamp(14px, 2.0vw, 28px);
+      color: #88ffcc;
+      text-shadow: 0 0 16px rgba(0,255,160,0.6);
+      text-align: center;
+      line-height: 2;
+    }
+    #name-prompt .sub { font-size: clamp(6px, 0.7vw, 11px); color: #1e5040; text-align: center; }
+    #name-input {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(12px, 1.4vw, 20px);
+      background: #060e1e;
+      color: #ddcc77;
+      border: 1px solid rgba(180,140,0,0.6);
+      padding: 10px 18px;
+      outline: none;
+      text-align: center;
+      width: 300px;
+    }
+    #name-input::placeholder { color: #2a2210; }
+    #name-submit {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(8px, 0.9vw, 13px);
+      background: rgba(10,28,10,0.9);
+      color: #66ee66;
+      border: 1px solid rgba(60,180,60,0.5);
+      padding: 10px 22px;
+      cursor: pointer;
+    }
+    #name-submit:hover { background: rgba(16,44,16,0.95); border-color: rgba(80,220,80,0.7); }
+    #name-confirm {
+      font-size: clamp(9px, 1.0vw, 16px);
+      color: #ddcc77;
+      text-align: center;
+      line-height: 2;
+      text-shadow: 0 0 8px rgba(180,140,0,0.5);
+      display: none;
+      white-space: pre-line;
+    }
+    #name-start-btn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(7px, 0.8vw, 12px);
+      background: rgba(6,12,36,0.9);
+      color: #88aaee;
+      border: 1px solid rgba(60,100,220,0.5);
+      padding: 10px 22px;
+      cursor: pointer;
+      display: none;
+    }
+    #name-start-btn:hover { background: rgba(12,20,60,0.95); }
+  </style>
+</head>
+<body>
+
+  <!-- Bubble background -->
+  <canvas id="canvas-bg"></canvas>
+
+  <!-- Name prompt -->
+  <div id="name-prompt">
+    <h1>领养一颗大脑<br/><span style="font-size:0.7em;color:#1a5040">Adopt a Brain</span></h1>
+    <p class="sub">给你的大脑起个名字 / Name your brain</p>
+    <input id="name-input" type="text" maxlength="12" placeholder="输入名字…" autocomplete="off" />
+    <button id="name-submit">确认 / Confirm</button>
+    <div id="name-confirm"></div>
+    <button id="name-start-btn">开始 / Start</button>
+  </div>
+
+  <!-- Title bar -->
+  <div id="title-bar">
+    <span id="title-zh">领养一颗大脑</span>
+    <span id="title-sep">|</span>
+    <span id="title-en">Adopt a Brain</span>
+  </div>
+
+  <!-- 2-column game area -->
+  <div id="game-area">
+
+    <!-- Left column: EEG strip (flex) + fMRI heatmap + axial brain -->
+    <div id="left-col">
+      <div class="panel" id="eeg-panel">
+        <div class="panel-header">
+          <span class="ph-zh">⚡ 脑电图 EEG</span>
+          <span class="ph-en">Brainwave Monitor</span>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="canvas-eeg"></canvas>
+          <div id="eeg-mode-tag">α ALPHA</div>
+        </div>
+      </div>
+
+      <div class="panel" id="fmri-panel">
+        <div class="panel-header">
+          <span class="ph-zh">🔬 功能成像 fMRI</span>
+          <span class="ph-en">Functional MRI · Thermal Heatmap</span>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="canvas-fmri"></canvas>
+        </div>
+      </div>
+
+      <div class="panel" id="axial-panel">
+        <div class="panel-header">
+          <span class="ph-zh">🔵 轴位脑区图</span>
+          <span class="ph-en">Axial Brain · Top-Down View</span>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="canvas-axial"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right column: Brain (square) + Control (square) -->
+    <div id="right-col">
+      <div class="panel" id="brain-panel">
+        <div class="panel-header">
+          <span class="ph-zh">🧠 侧视激活图</span>
+          <span class="ph-en">Lateral Brain Activation</span>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="canvas-brain"></canvas>
+        </div>
+        <div id="region-legend">
+          <div class="legend-item"><canvas class="legend-dot" id="dot-prefrontal"></canvas><span>前额叶 PFC</span></div>
+          <div class="legend-item"><canvas class="legend-dot" id="dot-amygdala"></canvas><span>杏仁核 AMY</span></div>
+          <div class="legend-item"><canvas class="legend-dot" id="dot-hippocampus"></canvas><span>海马体 HPC</span></div>
+          <div class="legend-item"><canvas class="legend-dot" id="dot-basal_ganglia"></canvas><span>基底核 BG</span></div>
+          <div class="legend-item"><canvas class="legend-dot" id="dot-cerebellum"></canvas><span>小脑 CB</span></div>
+          <div class="legend-item"><canvas class="legend-dot" id="dot-thalamus"></canvas><span>丘脑 THL</span></div>
+          <div class="legend-item"><canvas class="legend-dot" id="dot-cingulate"></canvas><span>扣带回 CG</span></div>
+        </div>
+      </div>
+
+      <div class="panel" id="control-panel">
+        <div id="brain-name-display">— 大脑未命名 / Brain Unnamed —</div>
+        <div id="event-card">
+          <div id="event-title-zh">大脑正在待机…</div>
+          <div id="event-title-en">Brain idling — event incoming…</div>
+          <div id="event-desc-zh"></div>
+          <div id="event-desc-en"></div>
+        </div>
+        <div id="emotion-bar">
+          <div class="emotion-chip" id="chip-pleasure">
+            <span class="chip-labels"><span class="chip-zh">愉悦</span><span class="chip-en">pleasure</span></span>
+            <span class="chip-arrow" id="arrow-pleasure"></span>
+          </div>
+          <div class="emotion-chip" id="chip-cognitive">
+            <span class="chip-labels"><span class="chip-zh">认知</span><span class="chip-en">cognitive</span></span>
+            <span class="chip-arrow" id="arrow-cognitive"></span>
+          </div>
+          <div class="emotion-chip" id="chip-social">
+            <span class="chip-labels"><span class="chip-zh">社交</span><span class="chip-en">social</span></span>
+            <span class="chip-arrow" id="arrow-social"></span>
+          </div>
+          <div class="emotion-chip" id="chip-creative">
+            <span class="chip-labels"><span class="chip-zh">创意</span><span class="chip-en">creative</span></span>
+            <span class="chip-arrow" id="arrow-creative"></span>
+          </div>
+          <div class="emotion-chip" id="chip-stress">
+            <span class="chip-labels"><span class="chip-zh">压力</span><span class="chip-en">stress</span></span>
+            <span class="chip-arrow" id="arrow-stress"></span>
+          </div>
+        </div>
+        <div id="options-container"></div>
+        <div id="feedback-zone">
+          <div id="feedback-text"></div>
+          <div id="feedback-en"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- #game-area -->
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
