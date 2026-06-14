@@ -1,4 +1,4 @@
-// Brain region activation model: maps emotion vector → region activations
+// Brain region activation model — lerped region weights → computed emotion dimensions
 
 import { state } from './gameState.js';
 
@@ -7,53 +7,60 @@ export const REGIONS = [
   'basal_ganglia', 'cerebellum', 'thalamus', 'cingulate'
 ];
 
-// Activation levels: 0 to 1
+// Current activation levels: 0 to 1
 export const activations = {
-  prefrontal: 0,
-  amygdala: 0,
-  hippocampus: 0,
+  prefrontal:    0,
+  amygdala:      0,
+  hippocampus:   0,
   basal_ganglia: 0,
-  cerebellum: 0,
-  thalamus: 0,
-  cingulate: 0
+  cerebellum:    0,
+  thalamus:      0,
+  cingulate:     0,
 };
 
-let emotionMap = null;
+// ── Lerp state ────────────────────────────────────────────────────────────────
+// On option pick: snapshot activations → target, then interpolate over
+// LERP_DURATION ms (suspending decay so the visual rise is never cancelled).
+const LERP_DURATION = 2500; // ms
+const lerpFrom = { prefrontal:0, amygdala:0, hippocampus:0, basal_ganglia:0, cerebellum:0, thalamus:0, cingulate:0 };
+const lerpTo   = { prefrontal:0, amygdala:0, hippocampus:0, basal_ganglia:0, cerebellum:0, thalamus:0, cingulate:0 };
+let lerpElapsed = 0;
+let lerpActive  = false;
 
-export async function loadEmotionMap() {
-  const res = await fetch('./data/emotionMap.json');
-  const data = await res.json();
-  emotionMap = data.mappings;
-}
+// ease-out cubic so the activation rises quickly then settles
+function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
 
-export function applyEmotionsToRegions() {
-  if (!emotionMap) return;
-  const em = state.emotions;
+export function applyRegionWeights(weights) {
+  // Snapshot current state as lerp start
+  for (const key of REGIONS) {
+    lerpFrom[key] = activations[key];
+    lerpTo[key]   = activations[key]; // default: keep current
+  }
 
-  for (const mapping of emotionMap) {
-    const emotionValue = em[mapping.emotion] ?? 0;
-    if (emotionValue === 0) continue;
-
-    const sign = Math.sign(emotionValue);
-    const magnitude = Math.abs(emotionValue);
-
-    if (sign > 0) {
-      for (const { region, weight } of mapping.positive) {
-        activations[region] = Math.min(1, activations[region] + magnitude * weight * 0.6);
-      }
-      for (const { region, weight } of mapping.negative) {
-        activations[region] = Math.max(0, activations[region] - magnitude * weight * 0.4);
-      }
-    } else {
-      // Negative emotion reverses the mapping
-      for (const { region, weight } of mapping.positive) {
-        activations[region] = Math.max(0, activations[region] - magnitude * weight * 0.3);
-      }
-      for (const { region, weight } of mapping.negative) {
-        activations[region] = Math.min(1, activations[region] + magnitude * weight * 0.3);
-      }
+  let totalPositiveDelta = 0;
+  for (const [region, delta] of Object.entries(weights)) {
+    if (lerpTo[region] !== undefined) {
+      lerpTo[region] = Math.max(0, Math.min(1, activations[region] + delta));
+    }
+    if (delta > 0 && state.stats.regionAccumulated[region] !== undefined) {
+      state.stats.regionAccumulated[region] += delta;
+      totalPositiveDelta += delta;
     }
   }
+  state.stats.totalActivation += totalPositiveDelta;
+
+  lerpElapsed = 0;
+  lerpActive  = true;
+}
+
+export function computeEmotions() {
+  const a = activations;
+  state.emotions.pleasure  = a.basal_ganglia * 0.6 + a.amygdala  * 0.4;
+  state.emotions.stress    = a.amygdala      * 0.5 + a.cingulate  * 0.5;
+  state.emotions.focus     = a.prefrontal    * 0.6 + a.thalamus   * 0.4;
+  state.emotions.cognitive = a.hippocampus   * 0.6 + a.prefrontal * 0.4;
+  state.emotions.social    = a.amygdala      * 0.4 + a.prefrontal * 0.6;
+  state.emotions.creative  = a.cingulate     * 0.5 + a.prefrontal * 0.5;
 }
 
 export function decayActivations(dt) {
@@ -64,6 +71,25 @@ export function decayActivations(dt) {
 }
 
 export function tickBrainModel(dt) {
-  applyEmotionsToRegions();
-  decayActivations(dt);
+  if (lerpActive) {
+    // Absolute interpolation: move activations from lerpFrom → lerpTo
+    // Decay is suspended so the lerp rise is never cancelled mid-animation
+    lerpElapsed += dt;
+    const t = Math.min(1, lerpElapsed / LERP_DURATION);
+    const te = easeOut(t);
+    for (const key of REGIONS) {
+      activations[key] = lerpFrom[key] + (lerpTo[key] - lerpFrom[key]) * te;
+    }
+    if (t >= 1) {
+      lerpActive = false;
+      for (const key of REGIONS) activations[key] = lerpTo[key];
+    }
+  } else {
+    // Normal frame: passive decay toward 0
+    decayActivations(dt);
+  }
+
+  computeEmotions();
+  state.emotionHistory.push({ ...state.emotions });
+  if (state.emotionHistory.length > 200) state.emotionHistory.shift();
 }

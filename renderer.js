@@ -309,11 +309,11 @@ function renderEEG(dt) {
   const ctx = ctxEEG;
   const W = canvasEEG.width, H = canvasEEG.height;
 
-  const stress    = Math.max(0, state.emotions.stress    ?? 0);
-  const cognitive = Math.max(0, state.emotions.cognitive ?? 0);
-  const pleasure  = state.emotions.pleasure ?? 0;
+  const stress   = state.emotions.stress   ?? 0;
+  const focus    = state.emotions.focus    ?? 0;
+  const pleasure = state.emotions.pleasure ?? 0;
 
-  const activity = (stress + cognitive) * 0.5;
+  const activity = (stress + focus) * 0.5;
   const freq = 0.028 + activity * 0.13;
   const amp  = 7 + activity * 24 + Math.abs(pleasure) * 5;
   const noise = activity * 3.5;
@@ -653,7 +653,7 @@ function renderBackground() {
 // ─────────────────────────────────────────────────────────────────────────────
 // EMOTION ARROWS
 // ─────────────────────────────────────────────────────────────────────────────
-const EMOTION_KEYS = ['pleasure', 'cognitive', 'social', 'creative', 'stress'];
+const EMOTION_KEYS = ['pleasure', 'stress', 'focus', 'cognitive', 'social', 'creative'];
 
 function updateEmotionChips() {
   for (const key of EMOTION_KEYS) {

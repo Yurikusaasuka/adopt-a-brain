@@ -11,23 +11,47 @@
         {
           "text_zh": "一饮而尽",
           "text_en": "Drink it all",
-          "emotionVector": { "pleasure": 0.7, "stress": -0.3, "cognitive": 0.5, "social": 0, "creative": 0.2 },
-          "feedback_zh": "咖啡因涌入！前额叶全速运转！",
-          "feedback_en": "Caffeine surge! Prefrontal at full speed!"
+          "regionWeights": {
+            "prefrontal":    0.5,
+            "amygdala":      0.1,
+            "hippocampus":   0.1,
+            "basal_ganglia": 0.4,
+            "cerebellum":    0.1,
+            "thalamus":      0.3,
+            "cingulate":     0.0
+          },
+          "feedback_zh": "咖啡因涌入！前额叶全速运转，丘脑全线唤醒！",
+          "feedback_en": "Caffeine surge! Prefrontal at full speed. Thalamus fully aroused!"
         },
         {
           "text_zh": "慢慢品味",
           "text_en": "Sip slowly",
-          "emotionVector": { "pleasure": 0.9, "stress": -0.5, "cognitive": 0.2, "social": 0, "creative": 0.4 },
-          "feedback_zh": "每一口都是享受，杏仁核轻轻微笑。",
-          "feedback_en": "Every sip is a pleasure. The amygdala smiles."
+          "regionWeights": {
+            "prefrontal":    0.2,
+            "amygdala":      0.3,
+            "hippocampus":   0.1,
+            "basal_ganglia": 0.5,
+            "cerebellum":    0.0,
+            "thalamus":      0.1,
+            "cingulate":     0.1
+          },
+          "feedback_zh": "每一口都是享受，基底核满足地亮起，杏仁核轻轻微笑。",
+          "feedback_en": "Every sip is a pleasure. Basal ganglia glows with reward."
         },
         {
           "text_zh": "忘记喝了",
           "text_en": "Forgot about it",
-          "emotionVector": { "pleasure": -0.2, "stress": 0.3, "cognitive": -0.1, "social": 0, "creative": 0 },
-          "feedback_zh": "凉掉了…大脑有点失落。",
-          "feedback_en": "It went cold... Brain feels a little down."
+          "regionWeights": {
+            "prefrontal":    -0.1,
+            "amygdala":      0.1,
+            "hippocampus":   0.0,
+            "basal_ganglia": -0.1,
+            "cerebellum":    0.0,
+            "thalamus":      0.0,
+            "cingulate":     0.2
+          },
+          "feedback_zh": "凉掉了……扣带回升起一丝遗憾。",
+          "feedback_en": "It went cold. A faint regret flickers in the cingulate."
         }
       ]
     },
@@ -42,21 +66,45 @@
         {
           "text_zh": "全力冲刺",
           "text_en": "Sprint hard",
-          "emotionVector": { "pleasure": -0.2, "stress": 0.9, "cognitive": 0.8, "social": -0.3, "creative": 0.3 },
-          "feedback_zh": "肾上腺素飙升！前额叶过热警告！",
-          "feedback_en": "Adrenaline spike! Prefrontal overheating!"
+          "regionWeights": {
+            "prefrontal":    0.5,
+            "amygdala":      0.7,
+            "hippocampus":   0.2,
+            "basal_ganglia": -0.1,
+            "cerebellum":    0.1,
+            "thalamus":      0.3,
+            "cingulate":     0.4
+          },
+          "feedback_zh": "肾上腺素飙升！前额叶过热，杏仁核紧绷！",
+          "feedback_en": "Adrenaline spike! Prefrontal overheating. Amygdala on high alert!"
         },
         {
           "text_zh": "深呼吸，拆解任务",
           "text_en": "Breathe, break it down",
-          "emotionVector": { "pleasure": 0.1, "stress": 0.3, "cognitive": 0.7, "social": 0, "creative": 0.2 },
+          "regionWeights": {
+            "prefrontal":    0.6,
+            "amygdala":      -0.2,
+            "hippocampus":   0.4,
+            "basal_ganglia": 0.1,
+            "cerebellum":    0.0,
+            "thalamus":      0.2,
+            "cingulate":     0.3
+          },
           "feedback_zh": "扣带回平息了恐慌，海马体开始整理记忆。",
-          "feedback_en": "Cingulate calms the panic. Hippocampus organizes."
+          "feedback_en": "Cingulate calms the panic. Hippocampus starts organizing."
         },
         {
           "text_zh": "摆烂放弃",
           "text_en": "Give up entirely",
-          "emotionVector": { "pleasure": -0.5, "stress": 0.4, "cognitive": -0.6, "social": -0.4, "creative": -0.5 },
+          "regionWeights": {
+            "prefrontal":    -0.3,
+            "amygdala":      0.5,
+            "hippocampus":   -0.2,
+            "basal_ganglia": -0.2,
+            "cerebellum":    0.0,
+            "thalamus":      -0.1,
+            "cingulate":     0.3
+          },
           "feedback_zh": "大脑陷入抑制状态……一切都灰了。",
           "feedback_en": "Brain enters inhibition... everything dims."
         }
@@ -73,23 +121,47 @@
         {
           "text_zh": "热情回复",
           "text_en": "Reply warmly",
-          "emotionVector": { "pleasure": 0.6, "stress": -0.2, "cognitive": 0.1, "social": 0.9, "creative": 0.1 },
-          "feedback_zh": "社交回路激活！杏仁核充满温暖。",
-          "feedback_en": "Social circuits lit up! Amygdala full of warmth."
+          "regionWeights": {
+            "prefrontal":    0.4,
+            "amygdala":      0.5,
+            "hippocampus":   0.2,
+            "basal_ganglia": 0.4,
+            "cerebellum":    0.0,
+            "thalamus":      0.1,
+            "cingulate":     0.1
+          },
+          "feedback_zh": "社交回路激活！杏仁核充满温暖，基底核涌出奖励信号。",
+          "feedback_en": "Social circuits lit up! Amygdala full of warmth. Reward signal fired."
         },
         {
           "text_zh": "稍后再说",
           "text_en": "Reply later",
-          "emotionVector": { "pleasure": 0, "stress": 0.1, "cognitive": 0, "social": 0.2, "creative": 0 },
+          "regionWeights": {
+            "prefrontal":    0.1,
+            "amygdala":      0.0,
+            "hippocampus":   0.2,
+            "basal_ganglia": 0.0,
+            "cerebellum":    0.0,
+            "thalamus":      0.0,
+            "cingulate":     0.1
+          },
           "feedback_zh": "海马体收藏了这份惦念。",
           "feedback_en": "Hippocampus files this moment away."
         },
         {
           "text_zh": "没看到",
           "text_en": "Ignore it",
-          "emotionVector": { "pleasure": -0.1, "stress": 0.2, "cognitive": 0, "social": -0.4, "creative": 0 },
-          "feedback_zh": "前额叶有一丝愧疚……",
-          "feedback_en": "A faint guilt lingers in the prefrontal."
+          "regionWeights": {
+            "prefrontal":    0.1,
+            "amygdala":      0.2,
+            "hippocampus":   0.0,
+            "basal_ganglia": -0.1,
+            "cerebellum":    0.0,
+            "thalamus":      0.0,
+            "cingulate":     0.3
+          },
+          "feedback_zh": "前额叶有一丝愧疚……扣带回默默记录着。",
+          "feedback_en": "A faint guilt lingers. Cingulate quietly notes it."
         }
       ]
     },
@@ -104,23 +176,47 @@
         {
           "text_zh": "出门散步",
           "text_en": "Go for a walk",
-          "emotionVector": { "pleasure": 0.4, "stress": -0.4, "cognitive": 0.2, "social": 0.1, "creative": 0.8 },
-          "feedback_zh": "海马体在街景中发现了灵感！",
-          "feedback_en": "Hippocampus finds inspiration in the streets!"
+          "regionWeights": {
+            "prefrontal":    0.2,
+            "amygdala":      -0.2,
+            "hippocampus":   0.5,
+            "basal_ganglia": 0.3,
+            "cerebellum":    0.3,
+            "thalamus":      0.1,
+            "cingulate":     0.4
+          },
+          "feedback_zh": "海马体在街景中发现了灵感！小脑协调着步伐与思绪。",
+          "feedback_en": "Hippocampus finds inspiration in the streets! Cerebellum syncs steps and thoughts."
         },
         {
           "text_zh": "强行硬写",
           "text_en": "Force through it",
-          "emotionVector": { "pleasure": -0.2, "stress": 0.5, "cognitive": 0.6, "social": 0, "creative": 0.3 },
-          "feedback_zh": "扣带回和前额叶艰苦鏖战。",
-          "feedback_en": "Cingulate and prefrontal battle hard."
+          "regionWeights": {
+            "prefrontal":    0.5,
+            "amygdala":      0.3,
+            "hippocampus":   0.2,
+            "basal_ganglia": 0.0,
+            "cerebellum":    0.0,
+            "thalamus":      0.2,
+            "cingulate":     0.4
+          },
+          "feedback_zh": "扣带回和前额叶艰苦鏖战，杏仁核隐隐抗议。",
+          "feedback_en": "Cingulate and prefrontal battle hard. Amygdala quietly protests."
         },
         {
           "text_zh": "换个媒介",
           "text_en": "Switch medium",
-          "emotionVector": { "pleasure": 0.3, "stress": -0.2, "cognitive": 0.3, "social": 0, "creative": 0.9 },
-          "feedback_zh": "新的神经路径打通了！扣带回闪亮。",
-          "feedback_en": "New neural path opened! Cingulate shines."
+          "regionWeights": {
+            "prefrontal":    0.4,
+            "amygdala":      -0.1,
+            "hippocampus":   0.3,
+            "basal_ganglia": 0.2,
+            "cerebellum":    0.0,
+            "thalamus":      0.1,
+            "cingulate":     0.6
+          },
+          "feedback_zh": "新的神经路径打通了！扣带回闪亮，创意涌现。",
+          "feedback_en": "New neural path opened! Cingulate shines with fresh associations."
         }
       ]
     },
@@ -135,23 +231,47 @@
         {
           "text_zh": "记下梦的内容",
           "text_en": "Write down the dream",
-          "emotionVector": { "pleasure": 0.1, "stress": -0.3, "cognitive": 0.4, "social": 0, "creative": 0.5 },
-          "feedback_zh": "海马体整合了混乱，找到了意义。",
-          "feedback_en": "Hippocampus integrates the chaos, finds meaning."
+          "regionWeights": {
+            "prefrontal":    0.4,
+            "amygdala":      -0.2,
+            "hippocampus":   0.5,
+            "basal_ganglia": 0.1,
+            "cerebellum":    0.0,
+            "thalamus":      0.1,
+            "cingulate":     0.3
+          },
+          "feedback_zh": "海马体整合了混乱，前额叶找到了意义。",
+          "feedback_en": "Hippocampus integrates the chaos. Prefrontal finds meaning."
         },
         {
           "text_zh": "刷手机分心",
           "text_en": "Scroll phone to distract",
-          "emotionVector": { "pleasure": 0.2, "stress": 0.1, "cognitive": -0.3, "social": 0.2, "creative": -0.2 },
-          "feedback_zh": "杏仁核被屏幕光安抚，但前额叶有些疲惫。",
-          "feedback_en": "Screen soothes amygdala, but prefrontal grows tired."
+          "regionWeights": {
+            "prefrontal":    -0.2,
+            "amygdala":      0.2,
+            "hippocampus":   -0.1,
+            "basal_ganglia": 0.2,
+            "cerebellum":    0.0,
+            "thalamus":      0.3,
+            "cingulate":     0.1
+          },
+          "feedback_zh": "屏幕光刺激着丘脑，杏仁核被暂时安抚，前额叶却有些疲惫。",
+          "feedback_en": "Screen stimulates thalamus. Amygdala soothed briefly. Prefrontal grows tired."
         },
         {
           "text_zh": "冥想回归睡眠",
           "text_en": "Meditate back to sleep",
-          "emotionVector": { "pleasure": 0.5, "stress": -0.7, "cognitive": 0.1, "social": 0, "creative": 0.2 },
-          "feedback_zh": "脑波缓缓平静。扣带回放松了。",
-          "feedback_en": "Brainwaves slow. Cingulate relaxes."
+          "regionWeights": {
+            "prefrontal":    0.4,
+            "amygdala":      -0.3,
+            "hippocampus":   0.2,
+            "basal_ganglia": 0.1,
+            "cerebellum":    0.0,
+            "thalamus":      -0.1,
+            "cingulate":     0.4
+          },
+          "feedback_zh": "脑波缓缓平静。扣带回放松，恐惧逐渐消散。",
+          "feedback_en": "Brainwaves slow. Cingulate relaxes. Fear fades."
         }
       ]
     },
@@ -166,23 +286,47 @@
         {
           "text_zh": "据理力争",
           "text_en": "Stand your ground",
-          "emotionVector": { "pleasure": -0.3, "stress": 0.8, "cognitive": 0.5, "social": -0.6, "creative": -0.1 },
-          "feedback_zh": "前额叶全力运转，杏仁核沸腾。",
-          "feedback_en": "Prefrontal maxed out. Amygdala boiling."
+          "regionWeights": {
+            "prefrontal":    0.4,
+            "amygdala":      0.7,
+            "hippocampus":   0.1,
+            "basal_ganglia": -0.1,
+            "cerebellum":    0.1,
+            "thalamus":      0.2,
+            "cingulate":     0.5
+          },
+          "feedback_zh": "前额叶全力运转，杏仁核沸腾，扣带回在冲突中高度警觉！",
+          "feedback_en": "Prefrontal maxed out. Amygdala boiling. Cingulate on high conflict alert!"
         },
         {
           "text_zh": "主动和解",
           "text_en": "Reach for peace",
-          "emotionVector": { "pleasure": 0.3, "stress": -0.4, "cognitive": 0.3, "social": 0.7, "creative": 0.1 },
-          "feedback_zh": "社交回路修复中……温暖慢慢回来。",
-          "feedback_en": "Social circuits repairing... warmth slowly returns."
+          "regionWeights": {
+            "prefrontal":    0.6,
+            "amygdala":      0.2,
+            "hippocampus":   0.2,
+            "basal_ganglia": 0.3,
+            "cerebellum":    0.0,
+            "thalamus":      0.1,
+            "cingulate":     -0.2
+          },
+          "feedback_zh": "社交回路修复中……前额叶主导，温暖慢慢回来。",
+          "feedback_en": "Social circuits repairing... prefrontal leads. Warmth slowly returns."
         },
         {
           "text_zh": "沉默离开",
           "text_en": "Leave in silence",
-          "emotionVector": { "pleasure": -0.4, "stress": 0.5, "cognitive": -0.2, "social": -0.5, "creative": 0 },
-          "feedback_zh": "扣带回积压着未说出口的话。",
-          "feedback_en": "Unsaid words accumulate in the cingulate."
+          "regionWeights": {
+            "prefrontal":    0.1,
+            "amygdala":      0.4,
+            "hippocampus":   0.1,
+            "basal_ganglia": -0.2,
+            "cerebellum":    0.0,
+            "thalamus":      0.0,
+            "cingulate":     0.5
+          },
+          "feedback_zh": "扣带回积压着未说出口的话，杏仁核余震未平。",
+          "feedback_en": "Unsaid words accumulate in the cingulate. Amygdala aftershock lingers."
         }
       ]
     },
@@ -197,21 +341,45 @@
         {
           "text_zh": "跟着哼唱",
           "text_en": "Hum along",
-          "emotionVector": { "pleasure": 0.7, "stress": -0.3, "cognitive": 0, "social": 0.2, "creative": 0.5 },
-          "feedback_zh": "基底核的奖励回路轻轻震颤。",
-          "feedback_en": "Basal ganglia reward circuit gently hums."
+          "regionWeights": {
+            "prefrontal":    0.1,
+            "amygdala":      0.4,
+            "hippocampus":   0.1,
+            "basal_ganglia": 0.5,
+            "cerebellum":    0.3,
+            "thalamus":      0.1,
+            "cingulate":     0.2
+          },
+          "feedback_zh": "基底核的节律奖励回路轻轻震颤，小脑同步着旋律！",
+          "feedback_en": "Basal ganglia rhythm-reward circuit hums. Cerebellum syncs to the melody!"
         },
         {
           "text_zh": "沉浸回忆",
           "text_en": "Sink into memory",
-          "emotionVector": { "pleasure": 0.4, "stress": 0, "cognitive": 0.2, "social": 0, "creative": 0.3 },
-          "feedback_zh": "海马体打开了旧日的房间。",
-          "feedback_en": "Hippocampus opens the door to old rooms."
+          "regionWeights": {
+            "prefrontal":    0.2,
+            "amygdala":      0.3,
+            "hippocampus":   0.6,
+            "basal_ganglia": 0.1,
+            "cerebellum":    0.0,
+            "thalamus":      0.1,
+            "cingulate":     0.2
+          },
+          "feedback_zh": "海马体打开了旧日的房间，情绪记忆与杏仁核共鸣。",
+          "feedback_en": "Hippocampus opens the door to old rooms. Amygdala resonates with memory."
         },
         {
           "text_zh": "换个频道",
           "text_en": "Change the channel",
-          "emotionVector": { "pleasure": -0.1, "stress": 0, "cognitive": 0, "social": 0, "creative": 0 },
+          "regionWeights": {
+            "prefrontal":    0.1,
+            "amygdala":      -0.1,
+            "hippocampus":   0.0,
+            "basal_ganglia": 0.0,
+            "cerebellum":    0.0,
+            "thalamus":      0.0,
+            "cingulate":     0.1
+          },
           "feedback_zh": "记忆的门轻轻关上了。",
           "feedback_en": "The door to memory quietly closes."
         }
@@ -228,23 +396,47 @@
         {
           "text_zh": "立刻打开",
           "text_en": "Open immediately",
-          "emotionVector": { "pleasure": 0.5, "stress": 0.7, "cognitive": 0.4, "social": 0.2, "creative": 0 },
-          "feedback_zh": "肾上腺素爆发！杏仁核高度警戒！",
-          "feedback_en": "Adrenaline burst! Amygdala on high alert!"
+          "regionWeights": {
+            "prefrontal":    0.4,
+            "amygdala":      0.6,
+            "hippocampus":   0.2,
+            "basal_ganglia": 0.1,
+            "cerebellum":    0.1,
+            "thalamus":      0.4,
+            "cingulate":     0.3
+          },
+          "feedback_zh": "肾上腺素爆发！杏仁核高度警戒，丘脑全速唤醒！",
+          "feedback_en": "Adrenaline burst! Amygdala on high alert. Thalamus at full arousal!"
         },
         {
           "text_zh": "深呼吸再看",
           "text_en": "Breathe first, then look",
-          "emotionVector": { "pleasure": 0.3, "stress": 0.3, "cognitive": 0.5, "social": 0, "creative": 0 },
-          "feedback_zh": "前额叶控制住了杏仁核的冲动。",
-          "feedback_en": "Prefrontal restrains the amygdala's impulse."
+          "regionWeights": {
+            "prefrontal":    0.6,
+            "amygdala":      -0.2,
+            "hippocampus":   0.2,
+            "basal_ganglia": 0.1,
+            "cerebellum":    0.0,
+            "thalamus":      0.2,
+            "cingulate":     0.4
+          },
+          "feedback_zh": "前额叶控制住了杏仁核的冲动，扣带回稳定情绪。",
+          "feedback_en": "Prefrontal restrains the amygdala's impulse. Cingulate steadies emotions."
         },
         {
           "text_zh": "请朋友先看",
           "text_en": "Ask a friend to check first",
-          "emotionVector": { "pleasure": 0.2, "stress": 0.4, "cognitive": 0.1, "social": 0.8, "creative": 0 },
-          "feedback_zh": "社交缓冲激活，分担了部分焦虑。",
-          "feedback_en": "Social buffer activated. Anxiety distributed."
+          "regionWeights": {
+            "prefrontal":    0.4,
+            "amygdala":      0.2,
+            "hippocampus":   0.3,
+            "basal_ganglia": 0.2,
+            "cerebellum":    0.0,
+            "thalamus":      0.1,
+            "cingulate":     0.1
+          },
+          "feedback_zh": "社交缓冲激活，前额叶将部分焦虑分担给了信任的人。",
+          "feedback_en": "Social buffer activated. Prefrontal distributes anxiety to trusted hands."
         }
       ]
     },
@@ -259,22 +451,46 @@
         {
           "text_zh": "专注投入",
           "text_en": "Dive in focused",
-          "emotionVector": { "pleasure": 0.3, "stress": 0.2, "cognitive": 0.9, "social": 0, "creative": 0.4 },
-          "feedback_zh": "新的突触连接正在形成！海马体兴奋不已。",
-          "feedback_en": "New synaptic connections forming! Hippocampus thrilled."
+          "regionWeights": {
+            "prefrontal":    0.6,
+            "amygdala":      0.1,
+            "hippocampus":   0.5,
+            "basal_ganglia": 0.2,
+            "cerebellum":    0.1,
+            "thalamus":      0.4,
+            "cingulate":     0.2
+          },
+          "feedback_zh": "新的突触连接正在形成！海马体兴奋不已，丘脑全速中继！",
+          "feedback_en": "New synaptic connections forming! Hippocampus thrilled. Thalamus relaying at full speed!"
         },
         {
           "text_zh": "边学边玩",
           "text_en": "Learn playfully",
-          "emotionVector": { "pleasure": 0.6, "stress": -0.1, "cognitive": 0.5, "social": 0, "creative": 0.7 },
-          "feedback_zh": "基底核把学习变成了奖励循环。",
-          "feedback_en": "Basal ganglia turns learning into a reward loop."
+          "regionWeights": {
+            "prefrontal":    0.3,
+            "amygdala":      0.1,
+            "hippocampus":   0.4,
+            "basal_ganglia": 0.5,
+            "cerebellum":    0.1,
+            "thalamus":      0.2,
+            "cingulate":     0.3
+          },
+          "feedback_zh": "基底核把学习变成了奖励循环，海马体边笑边记忆！",
+          "feedback_en": "Basal ganglia turns learning into a reward loop. Hippocampus memorizes with a smile!"
         },
         {
           "text_zh": "感到太难放弃",
           "text_en": "Too hard, give up",
-          "emotionVector": { "pleasure": -0.4, "stress": 0.3, "cognitive": -0.3, "social": 0, "creative": -0.3 },
-          "feedback_zh": "神经可塑性窗口关闭了……也许下次。",
+          "regionWeights": {
+            "prefrontal":    -0.2,
+            "amygdala":      0.3,
+            "hippocampus":   -0.2,
+            "basal_ganglia": -0.2,
+            "cerebellum":    0.0,
+            "thalamus":      0.0,
+            "cingulate":     0.2
+          },
+          "feedback_zh": "神经可塑性窗口关闭了……也许下次吧。",
           "feedback_en": "Neuroplasticity window closed... maybe next time."
         }
       ]
@@ -290,23 +506,47 @@
         {
           "text_zh": "发呆放空",
           "text_en": "Just daydream",
-          "emotionVector": { "pleasure": 0.5, "stress": -0.6, "cognitive": -0.2, "social": 0, "creative": 0.4 },
-          "feedback_zh": "默认模式网络激活——大脑在整合自身。",
-          "feedback_en": "Default mode network on — brain integrating itself."
+          "regionWeights": {
+            "prefrontal":    0.3,
+            "amygdala":      -0.1,
+            "hippocampus":   0.3,
+            "basal_ganglia": 0.1,
+            "cerebellum":    0.0,
+            "thalamus":      0.1,
+            "cingulate":     0.5
+          },
+          "feedback_zh": "默认模式网络激活——大脑在整合自身，扣带回漫游于往事。",
+          "feedback_en": "Default mode network on. Brain integrates itself. Cingulate drifts through memories."
         },
         {
           "text_zh": "阅读一本书",
           "text_en": "Read a book",
-          "emotionVector": { "pleasure": 0.4, "stress": -0.3, "cognitive": 0.5, "social": 0.1, "creative": 0.5 },
-          "feedback_zh": "海马体在书页中建造新的宫殿。",
-          "feedback_en": "Hippocampus builds new palaces in the pages."
+          "regionWeights": {
+            "prefrontal":    0.4,
+            "amygdala":      0.1,
+            "hippocampus":   0.5,
+            "basal_ganglia": 0.1,
+            "cerebellum":    0.0,
+            "thalamus":      0.3,
+            "cingulate":     0.2
+          },
+          "feedback_zh": "海马体在书页中建造新的宫殿，前额叶专注凝神。",
+          "feedback_en": "Hippocampus builds new palaces in the pages. Prefrontal holds still attention."
         },
         {
           "text_zh": "刷社交媒体",
           "text_en": "Scroll social media",
-          "emotionVector": { "pleasure": 0.2, "stress": 0.3, "cognitive": -0.3, "social": 0.5, "creative": -0.1 },
-          "feedback_zh": "多巴胺小剂量反复释放……基底核上瘾了。",
-          "feedback_en": "Micro-dopamine bursts... basal ganglia hooked."
+          "regionWeights": {
+            "prefrontal":    -0.1,
+            "amygdala":      0.3,
+            "hippocampus":   0.0,
+            "basal_ganglia": 0.4,
+            "cerebellum":    0.0,
+            "thalamus":      0.3,
+            "cingulate":     0.2
+          },
+          "feedback_zh": "多巴胺小剂量反复释放……基底核上瘾了，前额叶悄悄撤退。",
+          "feedback_en": "Micro-dopamine bursts... basal ganglia hooked. Prefrontal quietly retreats."
         }
       ]
     }

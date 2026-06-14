@@ -1,0 +1,10 @@
+{
+  "liveServer.settings.ignoreFiles": [
+    "**/.git/**",
+    "**/.git",
+    "**/*.tmp",
+    "**/*.aod",
+    "**/*~"
+  ],
+  "liveServer.settings.donotShowInfoMsg": true
+}
