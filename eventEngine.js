@@ -1,7 +1,7 @@
 // Event engine: loads events, dispatches on timer, handles option selection
 
 import { state } from './gameState.js';
-import { applyRegionWeights } from './brainModel.js';
+import { applyRegionWeights, computeBrainType } from './brainModel.js';
 
 let allEvents = [];
 let eventQueue = [];
@@ -46,7 +46,6 @@ function dispatchNextEvent() {
   if (eventQueue.length === 0) shuffleQueue();
   const event = eventQueue.shift();
   if (!event) {
-    // allEvents is empty (shouldn't happen) — skip dispatch rather than fire undefined
     console.warn('[Adopt-a-Brain] dispatchNextEvent: event pool is empty');
     return;
   }
@@ -65,6 +64,9 @@ export function selectOption(optionIndex) {
     state.experiencedEvents.push(state.currentEvent.id);
   }
   state.stats.eventsResolved++;
+
+  // Recompute brain type every 10 events
+  if (state.stats.eventsResolved % 10 === 0) computeBrainType();
 
   if (onFeedbackCallback) {
     onFeedbackCallback(opt.feedback_zh, opt.feedback_en);

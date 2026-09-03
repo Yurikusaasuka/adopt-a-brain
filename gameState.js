@@ -5,14 +5,16 @@ export const state = {
   started: false,
   gameInitialized: false,
 
-  // 6 computed emotion dimensions (0–1, derived from region activations each frame)
+  // 8 computed emotion dimensions (0–1, derived from region activations each frame)
   emotions: {
-    pleasure:  0,
-    stress:    0,
-    focus:     0,
-    cognitive: 0,
-    social:    0,
-    creative:  0,
+    pleasure:   0,
+    stress:     0,
+    motivation: 0,
+    focus:      0,
+    memory:     0,
+    social:     0,
+    creative:   0,
+    fluency:    0,
   },
 
   emotionHistory: [],
@@ -31,6 +33,7 @@ export const state = {
     peakPleasure: 0,
     peakStress: 0,
     totalActivation: 0,
+    // cumulativeActivation per region: lifetime total of positive deltas, never decays
     regionAccumulated: {
       prefrontal:    0,
       amygdala:      0,
@@ -41,6 +44,11 @@ export const state = {
       cingulate:     0,
     },
   },
+
+  // Brain type classification (recalculated every 10 events from cumulative data)
+  brainType: null,
+  brainTypeScores: { reptilian: 0, limbic: 0, cortical: 0, bas: 0.5, bis: 0.5 },
+  brainTypeChanged: false,
 };
 
 export function setBrainName(name) {

@@ -1,47 +1,70 @@
 {
-  "mappings": [
+  "note": "Documents the 8 emotion dimension formulas derived from instantaneous region activations each frame. Weights match brainModel.js computeEmotions().",
+  "dimensions": [
     {
       "emotion": "pleasure",
-      "positive": [
-        { "region": "basal_ganglia", "weight": 0.8 },
-        { "region": "amygdala", "weight": 0.5 }
-      ],
-      "negative": []
+      "formula": "BG × 0.6 + AMY × 0.4",
+      "regions": [
+        { "region": "basal_ganglia", "weight": 0.6 },
+        { "region": "amygdala",      "weight": 0.4 }
+      ]
     },
     {
       "emotion": "stress",
-      "positive": [
-        { "region": "amygdala", "weight": 0.9 },
-        { "region": "cingulate", "weight": 0.7 }
-      ],
-      "negative": [
+      "formula": "AMY × 0.6 + CG × 0.4",
+      "regions": [
+        { "region": "amygdala",  "weight": 0.6 },
+        { "region": "cingulate", "weight": 0.4 }
+      ]
+    },
+    {
+      "emotion": "motivation",
+      "formula": "BG × 0.7 + PFC × 0.3",
+      "regions": [
+        { "region": "basal_ganglia", "weight": 0.7 },
+        { "region": "prefrontal",    "weight": 0.3 }
+      ]
+    },
+    {
+      "emotion": "focus",
+      "formula": "PFC × 0.65 + CG × 0.35",
+      "regions": [
+        { "region": "prefrontal", "weight": 0.65 },
+        { "region": "cingulate",  "weight": 0.35 }
+      ]
+    },
+    {
+      "emotion": "memory",
+      "formula": "HPC × 0.7 + PFC × 0.3",
+      "regions": [
+        { "region": "hippocampus", "weight": 0.7 },
+        { "region": "prefrontal",  "weight": 0.3 }
+      ]
+    },
+    {
+      "emotion": "social",
+      "formula": "AMY × 0.5 + PFC × 0.5",
+      "regions": [
+        { "region": "amygdala",   "weight": 0.5 },
         { "region": "prefrontal", "weight": 0.5 }
       ]
     },
     {
-      "emotion": "cognitive",
-      "positive": [
-        { "region": "prefrontal", "weight": 0.9 },
-        { "region": "hippocampus", "weight": 0.7 },
-        { "region": "thalamus", "weight": 0.6 }
-      ],
-      "negative": []
-    },
-    {
-      "emotion": "social",
-      "positive": [
-        { "region": "prefrontal", "weight": 0.6 },
-        { "region": "amygdala", "weight": 0.6 }
-      ],
-      "negative": []
-    },
-    {
       "emotion": "creative",
-      "positive": [
-        { "region": "prefrontal", "weight": 0.7 },
-        { "region": "cingulate", "weight": 0.8 }
-      ],
-      "negative": []
+      "formula": "PFC × 0.4 + CG × 0.35 + HPC × 0.25",
+      "regions": [
+        { "region": "prefrontal",  "weight": 0.40 },
+        { "region": "cingulate",   "weight": 0.35 },
+        { "region": "hippocampus", "weight": 0.25 }
+      ]
+    },
+    {
+      "emotion": "fluency",
+      "formula": "CB × 0.8 + THL × 0.2",
+      "regions": [
+        { "region": "cerebellum", "weight": 0.8 },
+        { "region": "thalamus",   "weight": 0.2 }
+      ]
     }
   ]
 }

@@ -1,8 +1,7 @@
 // Entry point: game loop, UI wiring, module init
 
 import { state, setBrainName }   from './gameState.js';
-import { activations, tickBrainModel } from './brainModel.js';
-import { REGIONS } from './brainModel.js';
+import { activations, tickBrainModel, computeBrainType, REGIONS } from './brainModel.js';
 import { loadEvents, tickEventEngine, selectOption, setEventCallback, setFeedbackCallback, setSaveCallback } from './eventEngine.js';
 import { initRenderer, initBackground, renderFrame } from './renderer.js';
 
@@ -122,6 +121,9 @@ function resetState() {
   state.stats.totalActivation = 0;
   for (const key of Object.keys(state.stats.regionAccumulated))
     state.stats.regionAccumulated[key] = 0;
+  state.brainType        = null;
+  state.brainTypeScores  = { reptilian: 0, limbic: 0, cortical: 0, bas: 0.5, bis: 0.5 };
+  state.brainTypeChanged = false;
   // Reset name prompt UI to its initial state for reuse
   nameInput.value          = '';
   nameInput.style.display  = '';
@@ -402,6 +404,7 @@ async function boot() {
   if (save) {
     // Returning player: silently restore and start — no menu shown
     applySaveData(save);
+    computeBrainType(); // re-derive from restored cumulative data
     startGame();
   } else {
     // New player: show name prompt (only automatic menu appearance)

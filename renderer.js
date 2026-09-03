@@ -5,7 +5,6 @@ import { state } from './gameState.js';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SHARED region colors — identical in both brain view and fMRI
-// base = at-rest color, active = fully activated color
 // ─────────────────────────────────────────────────────────────────────────────
 export const REGION_COLORS = {
   prefrontal:    { base: [28,  60, 160], active: [100, 170, 255] },
@@ -39,18 +38,18 @@ let fmriMap = null;
 
 // ── Lateral brain pixel data ──────────────────────────────────────────────────
 const B_PIX = 6;
-let brainCells = null; // [{px, py, region, shade}]
+let brainCells = null;
 
 // ── Axial (top-down) brain pixel data ────────────────────────────────────────
 const A_PIX = 6;
-let axialCells = null; // [{px, py, region}]
+let axialCells = null;
 
 // ── Bubbles ───────────────────────────────────────────────────────────────────
 const bubbles = [];
 let bubbleFrame = 0;
 
 // ── Emotion delta tracking ────────────────────────────────────────────────────
-const prevEmotions   = {};
+const prevEmotions    = {};
 const arrowFadeTimers = {};
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -81,13 +80,13 @@ export function initRenderer(brainCanvas, eegCanvas, fmriCanvas, axialCanvas) {
 }
 
 function watchWrap(canvas, onReady) {
-  const wrap = canvas.parentElement; // the .canvas-wrap div
+  const wrap = canvas.parentElement;
   if (!wrap) return;
   const obs = new ResizeObserver(entries => {
     for (const entry of entries) {
       const w = Math.round(entry.contentRect.width);
       const h = Math.round(entry.contentRect.height);
-      if (w < 1 || h < 1) return; // still collapsed, wait
+      if (w < 1 || h < 1) return;
       if (canvas.width !== w || canvas.height !== h) {
         canvas.width  = w;
         canvas.height = h;
@@ -116,16 +115,10 @@ function renderLegendDots() {
 // ─────────────────────────────────────────────────────────────────────────────
 // LATERAL BRAIN — geometry helpers
 // ─────────────────────────────────────────────────────────────────────────────
-// Coordinate system: nx=0 is anterior (front), nx=1 is posterior (back),
-//                    ny=0 is dorsal (top),  ny=1 is ventral (bottom).
-
 function inMainBrain(nx, ny) {
-  // Main cerebral oval
   const oval = Math.pow((nx - 0.44) / 0.38, 2) + Math.pow((ny - 0.40) / 0.35, 2) <= 1.0;
-  // Temporal lobe protrusion (front-lower)
   const temp = Math.pow((nx - 0.34) / 0.27, 2) + Math.pow((ny - 0.68) / 0.16, 2) <= 1.0
                && nx > 0.09 && nx < 0.63 && ny > 0.54 && ny < 0.82;
-  // Clip bottom-front corner (chin area)
   const notFrontChin = !(nx < 0.16 && ny > 0.64);
   return (oval || temp) && notFrontChin;
 }
@@ -136,39 +129,22 @@ function inCerebellum(nx, ny) {
 
 function assignLateralRegion(nx, ny, isCB) {
   if (isCB) return 'cerebellum';
-
-  // Prefrontal: anterior zone
   if (nx < 0.30) return 'prefrontal';
-
-  // Cingulate: dorsal medial strip (shown near top of hemisphere)
   if (ny < 0.20 && nx < 0.68) return 'cingulate';
-
-  // Thalamus: deep interior oval
   if (nx > 0.39 && nx < 0.59 && ny > 0.33 && ny < 0.54) return 'thalamus';
-
-  // Amygdala: anterior temporal (front-lower)
   if (nx < 0.37 && ny > 0.53) return 'amygdala';
-
-  // Hippocampus: posterior temporal / medial
   if (ny > 0.53 && nx >= 0.37 && nx < 0.70) return 'hippocampus';
-
-  // Basal ganglia: subcortical belt around thalamus
   if (nx > 0.30 && nx < 0.64 && ny > 0.24 && ny < 0.58) return 'basal_ganglia';
-
-  // Posterior cortex (occipital-parietal) → map to hippocampus for visual variety
   if (nx > 0.68) return 'hippocampus';
-
   return 'prefrontal';
 }
 
-// Fold lines: [nx_start, nx_end, base_ny, amplitude, freq_periods]
 const FOLD_DEFS = [
   [0.08, 0.78, 0.18, 0.022, 7.5],
   [0.06, 0.82, 0.30, 0.028, 7.0],
   [0.08, 0.80, 0.44, 0.025, 6.5],
   [0.12, 0.62, 0.62, 0.018, 5.5],
   [0.15, 0.57, 0.74, 0.014, 4.5],
-  // Frontal lobe interior vertical-ish sulcus
   [0.22, 0.26, 0.26, 0.075, 1.5],
 ];
 
@@ -183,7 +159,7 @@ function onFoldLine(nx, ny, ROWS) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// LATERAL BRAIN — build pixel data (precomputed once per resize)
+// LATERAL BRAIN — build pixel data
 // ─────────────────────────────────────────────────────────────────────────────
 function buildBrainCells() {
   brainCells = [];
@@ -193,7 +169,6 @@ function buildBrainCells() {
   const COLS = Math.floor(W / B_PIX);
   const ROWS = Math.floor(H / B_PIX);
 
-  // Pass 1: assign region to each cell (or null if outside)
   const regionMap = new Array(COLS * ROWS).fill(null);
   for (let gy = 0; gy < ROWS; gy++) {
     for (let gx = 0; gx < COLS; gx++) {
@@ -205,7 +180,6 @@ function buildBrainCells() {
     }
   }
 
-  // Pass 2: shade + fold check + border detection
   for (let gy = 0; gy < ROWS; gy++) {
     for (let gx = 0; gx < COLS; gx++) {
       const region = regionMap[gy * COLS + gx];
@@ -214,7 +188,6 @@ function buildBrainCells() {
       const nx = (gx + 0.5) / COLS;
       const ny = (gy + 0.5) / ROWS;
 
-      // Border: any 4-neighbor is outside
       const border =
         (gx === 0       || !regionMap[gy * COLS + (gx-1)]) ||
         (gx === COLS-1  || !regionMap[gy * COLS + (gx+1)]) ||
@@ -227,18 +200,13 @@ function buildBrainCells() {
       } else if (onFoldLine(nx, ny, ROWS)) {
         shade = 0.32;
       } else {
-        // Diffuse lighting from upper-left
-        const lightX = 0.52 - nx; // positive = toward upper-left
+        const lightX = 0.52 - nx;
         const lightY = 0.30 - ny;
         const diff = lightX * 0.55 + lightY * 0.65;
         shade = Math.max(0.42, Math.min(1.18, 0.74 + diff * 0.52));
-
-        // Bottom shadow band (2 gradient rows near lower edge)
         if (ny > 0.78) shade *= 0.48;
         else if (ny > 0.70) shade *= 0.66;
         else if (ny > 0.62) shade *= 0.82;
-
-        // Cerebellum bottom shadow
         if (region === 'cerebellum' && ny > 0.74) shade *= 0.60;
       }
 
@@ -262,10 +230,9 @@ function renderBrain() {
     const act = activations[region] ?? 0;
     const { base, active } = REGION_COLORS[region];
 
-    // Region color modulated by activation
-    const tAct = 0.12 + act * 0.88; // minimum visible even when inactive
+    const tAct = 0.12 + act * 0.88;
     const [r, g, b] = lerpColor(
-      base.map(v => Math.round(v * 0.25)), // very dim base
+      base.map(v => Math.round(v * 0.25)),
       active,
       tAct
     );
@@ -277,7 +244,6 @@ function renderBrain() {
     ctx.fillStyle = `rgb(${br},${bg},${bb})`;
     ctx.fillRect(px, py, B_PIX - 1, B_PIX - 1);
 
-    // Activation glow scatter
     if (act > 0.20 && Math.random() < act * 0.20) {
       const gr = Math.min(255, active[0] + 70);
       const gg = Math.min(255, active[1] + 70);
@@ -289,7 +255,6 @@ function renderBrain() {
     }
   }
 
-  // Upper-left specular sparkle (per frame)
   const hcx = W * 0.22, hcy = H * 0.20;
   for (let i = 0; i < 10; i++) {
     const sx = hcx + (Math.random() - 0.5) * W * 0.16;
@@ -332,18 +297,15 @@ function renderEEG(dt) {
   ctx.fillStyle = '#000a00';
   ctx.fillRect(0, 0, W, H);
 
-  // Grid
   ctx.fillStyle = '#001400';
   for (let x = 0; x < W; x += 24) ctx.fillRect(x, 0, 1, H);
   for (let y = 0; y < H; y += 12) ctx.fillRect(0, y, W, 1);
 
-  // Scanlines
   for (let y = 0; y < H; y += 3) {
     ctx.fillStyle = 'rgba(0,0,0,0.16)';
     ctx.fillRect(0, y, W, 1);
   }
 
-  // Baseline
   const midY = Math.floor(H / 2);
   ctx.fillStyle = '#003300';
   ctx.fillRect(0, midY, W, 1);
@@ -356,7 +318,6 @@ function renderEEG(dt) {
     const gCh  = Math.floor(110 + norm * 145);
     ctx.fillStyle = `rgb(0,${gCh},0)`;
     ctx.fillRect(x, Math.max(0, Math.min(H - 2, y)), 2, 2);
-    // Phosphor trail
     if (i > 2) {
       const py2 = Math.floor(midY - eegBuffer[i - 2]);
       ctx.fillStyle = `rgba(0,${Math.floor(gCh * 0.30)},0,0.45)`;
@@ -370,7 +331,7 @@ function renderEEG(dt) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// fMRI — pixelated heatmap using SAME region colors as brain view
+// fMRI
 // ─────────────────────────────────────────────────────────────────────────────
 function buildFMRIMap() {
   fmriMap = new Array(FMRI_GRID * FMRI_GRID).fill(null);
@@ -384,7 +345,7 @@ function buildFMRIMap() {
       const cdy    = ny - 0.87;
       const inCB   = (dx*dx)/(0.20*0.20) + (cdy*cdy)/(0.09*0.09) <= 1;
 
-      if (inCB)       fmriMap[gy * FMRI_GRID + gx] = 'cerebellum';
+      if (inCB)        fmriMap[gy * FMRI_GRID + gx] = 'cerebellum';
       else if (inMain) fmriMap[gy * FMRI_GRID + gx] = assignFMRIRegion(nx, ny);
     }
   }
@@ -401,9 +362,8 @@ function assignFMRIRegion(nx, ny) {
   return 'prefrontal';
 }
 
-// blue(0) → cyan → yellow(0.5) → red → white(1), quantized to 8 discrete steps
 function heatColor(t) {
-  t = Math.max(0, Math.min(1, Math.floor(t * 8) / 8)); // quantize
+  t = Math.max(0, Math.min(1, Math.floor(t * 8) / 8));
   if (t < 0.25) {
     const s = t / 0.25;
     return [Math.round(s * 25), Math.round(s * 70), Math.round(80 + s * 160)];
@@ -429,33 +389,27 @@ function renderFMRI() {
   const cellW = W / FMRI_GRID;
   const cellH = H / FMRI_GRID;
 
-  // Each cell: activation value → blue→yellow→red thermal color
   for (let gy = 0; gy < FMRI_GRID; gy++) {
     for (let gx = 0; gx < FMRI_GRID; gx++) {
       const region = fmriMap[gy * FMRI_GRID + gx];
       if (!region) continue;
-
       const act = activations[region] ?? 0;
       const [r, g, b] = heatColor(0.04 + act * 0.96);
-
       ctx.fillStyle = `rgb(${r},${g},${b})`;
       ctx.fillRect(Math.floor(gx * cellW), Math.floor(gy * cellH),
                    Math.ceil(cellW) + 1, Math.ceil(cellH) + 1);
     }
   }
 
-  // Pixel grid lines
   ctx.fillStyle = 'rgba(0,6,20,0.60)';
   for (let gx = 0; gx <= FMRI_GRID; gx++) ctx.fillRect(Math.floor(gx * cellW), 0, 1, H);
   for (let gy = 0; gy <= FMRI_GRID; gy++) ctx.fillRect(0, Math.floor(gy * cellH), W, 1);
 
-  // Scanlines
   for (let y = 0; y < H; y += 2) {
     ctx.fillStyle = 'rgba(0,0,0,0.13)';
     ctx.fillRect(0, y, W, 1);
   }
 
-  // Orientation labels
   ctx.fillStyle = 'rgba(40,100,120,0.55)';
   ctx.font = `${Math.max(6, Math.floor(W * 0.042))}px monospace`;
   ctx.textAlign = 'center';
@@ -467,7 +421,6 @@ function renderFMRI() {
   ctx.fillText('R', W - 3, H * 0.52);
   ctx.textAlign = 'left';
 
-  // Colorscale bar (blue→red legend)
   const barH = Math.min(H * 0.5, 70), barW = 6;
   const bx = W - 12, by = (H - barH) / 2;
   for (let i = 0; i < barH; i++) {
@@ -482,10 +435,8 @@ function renderFMRI() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// AXIAL BRAIN — top-down pixel art view
+// AXIAL BRAIN
 // ─────────────────────────────────────────────────────────────────────────────
-// Coordinate system: ndx = -1(left)→+1(right), ndy = -1(anterior)→+1(posterior)
-
 function buildAxialCells() {
   axialCells = [];
   const W = canvasAxial.width, H = canvasAxial.height;
@@ -494,21 +445,19 @@ function buildAxialCells() {
   const COLS = Math.floor(W / A_PIX);
   const ROWS = Math.floor(H / A_PIX);
   const cx = COLS * 0.50, cy = ROWS * 0.50;
-  // Ellipse radii in grid units: slightly taller than wide (brain shape)
   const rx = COLS * 0.42, ry = ROWS * 0.46;
 
   const regionMap = new Array(COLS * ROWS).fill(null);
 
   for (let gy = 0; gy < ROWS; gy++) {
     for (let gx = 0; gx < COLS; gx++) {
-      const ndx = (gx - cx) / rx;  // -1 to 1
+      const ndx = (gx - cx) / rx;
       const ndy = (gy - cy) / ry;
-      if (ndx*ndx + ndy*ndy > 1.0) continue; // outside ellipse
+      if (ndx*ndx + ndy*ndy > 1.0) continue;
       regionMap[gy * COLS + gx] = assignAxialRegion(ndx, ndy);
     }
   }
 
-  // Build cells with border detection
   for (let gy = 0; gy < ROWS; gy++) {
     for (let gx = 0; gx < COLS; gx++) {
       const region = regionMap[gy * COLS + gx];
@@ -525,28 +474,13 @@ function buildAxialCells() {
 
 function assignAxialRegion(ndx, ndy) {
   const ax = Math.abs(ndx);
-
-  // Cerebellum: posterior bump (barely visible at back of axial slice)
   if (ndy > 0.72 && ax < 0.40) return 'cerebellum';
-
-  // Prefrontal: anterior third
   if (ndy < -0.38) return 'prefrontal';
-
-  // Cingulate: medial strip, anterior–mid
   if (ax < 0.18 && ndy < 0.22) return 'cingulate';
-
-  // Thalamus: small center core
   if (ax < 0.20 && Math.abs(ndy) < 0.20) return 'thalamus';
-
-  // Amygdala: anterior lateral
   if (ax >= 0.36 && ndy < 0.10) return 'amygdala';
-
-  // Hippocampus: posterior lateral
   if (ax >= 0.28 && ndy >= 0.08) return 'hippocampus';
-
-  // Basal ganglia: peri-thalamic ring
   if (ax < 0.44 && Math.abs(ndy) < 0.42) return 'basal_ganglia';
-
   return 'prefrontal';
 }
 
@@ -570,7 +504,6 @@ function renderAxial() {
     if (border) {
       shade = 0.20;
     } else {
-      // Slight hemisphere-style shading: upper-left brighter
       const nx = (px / W - 0.50) / 0.42;
       const ny = (py / H - 0.50) / 0.46;
       const lightDot = (-0.5*nx - 0.7*ny + 0.5*Math.sqrt(Math.max(0, 1 - nx*nx - ny*ny)));
@@ -580,14 +513,12 @@ function renderAxial() {
     ctx.fillStyle = `rgb(${Math.min(255,Math.round(r*shade))},${Math.min(255,Math.round(g*shade))},${Math.min(255,Math.round(b*shade))})`;
     ctx.fillRect(px, py, A_PIX - 1, A_PIX - 1);
 
-    // Activation glow scatter
     if (act > 0.22 && Math.random() < act * 0.18) {
       ctx.fillStyle = `rgba(${Math.min(255,active[0]+80)},${Math.min(255,active[1]+80)},${Math.min(255,active[2]+80)},${act * 0.7})`;
       ctx.fillRect(px + Math.floor(Math.random()*(A_PIX-1)), py + Math.floor(Math.random()*(A_PIX-1)), 2, 2);
     }
   }
 
-  // Interhemispheric fissure (vertical midline)
   ctx.fillStyle = 'rgba(0,0,0,0.50)';
   for (let py = cy - ry * 0.82; py <= cy + ry * 0.65; py += 1) {
     const ndy = (py - cy) / ry;
@@ -596,7 +527,6 @@ function renderAxial() {
     ctx.fillRect(Math.round(cx) - 1, Math.round(py), 2, 1);
   }
 
-  // Orientation labels
   ctx.fillStyle = 'rgba(40,100,80,0.50)';
   ctx.font = `${Math.max(6, Math.floor(W * 0.05))}px monospace`;
   ctx.textAlign = 'center';
@@ -629,7 +559,6 @@ function renderBackground() {
   ctxBG.fillStyle = '#020d1a';
   ctxBG.fillRect(0, 0, W, H);
 
-  // Spawn
   bubbleFrame++;
   if (bubbleFrame % (10 + Math.floor(Math.random() * 12)) === 0) spawnBubble();
 
@@ -639,7 +568,6 @@ function renderBackground() {
     b.age++;
     b.x += Math.sin(b.wobPhase + b.age * b.wobFreq) * 0.45;
 
-    // Fade near top quarter
     const fadeT = Math.min(1, (b.y / H) * 4);
     const a = b.alpha * fadeT;
 
@@ -651,9 +579,9 @@ function renderBackground() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// EMOTION ARROWS
+// EMOTION CHIPS — 8 dimensions
 // ─────────────────────────────────────────────────────────────────────────────
-const EMOTION_KEYS = ['pleasure', 'stress', 'focus', 'cognitive', 'social', 'creative'];
+const EMOTION_KEYS = ['pleasure', 'stress', 'motivation', 'focus', 'memory', 'social', 'creative', 'fluency'];
 
 function updateEmotionChips() {
   for (const key of EMOTION_KEYS) {
@@ -668,7 +596,6 @@ function updateEmotionChips() {
 
     chipEl.classList.toggle('active', Math.abs(curr) > 0.08);
 
-    // Only show arrow for significant per-frame change (option choice, not decay)
     if (Math.abs(delta) >= 0.040) {
       const up  = delta > 0;
       const big = Math.abs(delta) >= 0.28;
@@ -684,6 +611,60 @@ function updateEmotionChips() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// BRAIN TYPE PANEL
+// ─────────────────────────────────────────────────────────────────────────────
+const LAYER_COLORS = {
+  reptilian: '#7a5c10',
+  limbic:    '#a83030',
+  cortical:  '#1a52b8',
+};
+
+function updateBrainTypePanel() {
+  const section = document.getElementById('brain-type-section');
+  if (!section) return;
+
+  if (state.brainTypeChanged) {
+    state.brainTypeChanged = false;
+    section.classList.remove('bt-flash');
+    // Force reflow so the animation restarts
+    void section.offsetWidth;
+    section.classList.add('bt-flash');
+    section.addEventListener('animationend', () => section.classList.remove('bt-flash'), { once: true });
+  }
+
+  const bt = state.brainType;
+  if (!bt) return;
+
+  const emojiEl   = document.getElementById('brain-type-emoji');
+  const nameZhEl  = document.getElementById('brain-type-name-zh');
+  const nameEnEl  = document.getElementById('brain-type-name-en');
+  const descZhEl  = document.getElementById('brain-type-desc-zh');
+  const descEnEl  = document.getElementById('brain-type-desc-en');
+
+  if (emojiEl)  emojiEl.textContent  = bt.emoji;
+  if (nameZhEl) nameZhEl.textContent = bt.name_zh;
+  if (nameEnEl) nameEnEl.textContent = bt.name_en;
+  if (descZhEl) descZhEl.textContent = bt.desc_zh;
+  if (descEnEl) descEnEl.textContent = bt.desc_en;
+
+  // Three-layer composition bar
+  const sc = state.brainTypeScores;
+  const layerRep = document.getElementById('layer-reptilian');
+  const layerLim = document.getElementById('layer-limbic');
+  const layerCor = document.getElementById('layer-cortical');
+  if (layerRep) layerRep.style.flex = String(Math.max(0.01, sc.reptilian));
+  if (layerLim) layerLim.style.flex = String(Math.max(0.01, sc.limbic));
+  if (layerCor) layerCor.style.flex = String(Math.max(0.01, sc.cortical));
+
+  // BIS/BAS marker position (sc.bas is the approach ratio 0–1)
+  const marker = document.getElementById('bisbas-marker');
+  if (marker) {
+    const pct = Math.round(sc.bas * 100);
+    marker.style.left = `calc(${pct}% - 3px)`;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // MAIN RENDER
 // ─────────────────────────────────────────────────────────────────────────────
 export function renderFrame(dt) {
@@ -693,4 +674,5 @@ export function renderFrame(dt) {
   renderFMRI();
   renderAxial();
   updateEmotionChips();
+  updateBrainTypePanel();
 }

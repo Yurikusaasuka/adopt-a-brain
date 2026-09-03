@@ -338,6 +338,76 @@
       color: #205038; text-align: center; margin-top: 2px;
     }
 
+    /* ── Brain type panel ── */
+    .brain-type-section {
+      display: flex; flex-direction: column; gap: 5px;
+      padding: 6px 0 4px;
+      transition: background 0.3s;
+    }
+    @keyframes bt-flash-anim {
+      0%   { background: rgba(0,190,220,0.18); }
+      60%  { background: rgba(0,190,220,0.10); }
+      100% { background: transparent; }
+    }
+    .brain-type-section.bt-flash { animation: bt-flash-anim 0.7s ease-out; }
+
+    .brain-type-header {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .brain-type-emoji {
+      font-size: clamp(18px, 2.4vw, 32px);
+      line-height: 1; flex-shrink: 0;
+    }
+    .brain-type-names { display: flex; flex-direction: column; gap: 1px; }
+    .brain-type-name-zh {
+      font-size: clamp(9px, 1.1vw, 16px);
+      color: #88ffcc; text-shadow: 0 0 8px rgba(0,255,160,0.35);
+      line-height: 1.4;
+    }
+    .brain-type-name-en {
+      font-size: clamp(6px, 0.68vw, 10px);
+      color: #2a6050; line-height: 1.3;
+    }
+
+    .brain-layer-bar-outer { display: flex; flex-direction: column; gap: 2px; }
+    .brain-layer-bar-labels {
+      display: flex; justify-content: space-between;
+      font-size: clamp(5px, 0.58vw, 8px);
+    }
+    #brain-layer-bar {
+      display: flex; height: 6px; width: 100%; overflow: hidden;
+      border: 1px solid rgba(0,100,120,0.25);
+    }
+    .layer-seg { height: 100%; transition: flex 0.6s ease-out; }
+
+    .bisbas-outer {
+      display: flex; align-items: center; gap: 4px; margin-top: 1px;
+    }
+    .bisbas-label {
+      font-size: clamp(5px, 0.56vw, 8px); color: #2a4450;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .bisbas-track {
+      flex: 1; height: 4px; position: relative;
+      background: rgba(0,100,120,0.18);
+      border: 1px solid rgba(0,100,120,0.25);
+    }
+    #bisbas-marker {
+      position: absolute; top: -2px; width: 6px; height: 8px;
+      background: #00c8dc;
+      box-shadow: 0 0 4px rgba(0,200,220,0.7);
+      transition: left 0.6s ease-out;
+    }
+
+    .brain-type-desc-zh {
+      font-size: clamp(6px, 0.72vw, 10px);
+      color: #3a7060; line-height: 1.6; margin-top: 2px;
+    }
+    .brain-type-desc-en {
+      font-size: clamp(5px, 0.58vw, 8px);
+      color: #1a3030; line-height: 1.5;
+    }
+
     /* ── Saved flash ── */
     #saved-flash {
       position: fixed; bottom: 14px; right: 14px; z-index: 200;
@@ -486,6 +556,40 @@
         <span class="ph-en">Stats</span>
       </div>
       <div id="stats-content">
+
+        <!-- Brain type classification -->
+        <div id="brain-type-section" class="brain-type-section">
+          <div class="brain-type-header">
+            <span id="brain-type-emoji" class="brain-type-emoji">?</span>
+            <div class="brain-type-names">
+              <div id="brain-type-name-zh" class="brain-type-name-zh">— 分析中 —</div>
+              <div id="brain-type-name-en" class="brain-type-name-en">Analyzing (10 events needed)</div>
+            </div>
+          </div>
+          <div class="brain-layer-bar-outer">
+            <div class="brain-layer-bar-labels">
+              <span style="color:#9a7520">爬行层</span>
+              <span style="color:#c04040">边缘层</span>
+              <span style="color:#3070d8">皮层</span>
+            </div>
+            <div id="brain-layer-bar">
+              <div id="layer-reptilian" class="layer-seg" style="background:#7a5c10;flex:1"></div>
+              <div id="layer-limbic"    class="layer-seg" style="background:#a83030;flex:1"></div>
+              <div id="layer-cortical"  class="layer-seg" style="background:#1a52b8;flex:1"></div>
+            </div>
+          </div>
+          <div class="bisbas-outer">
+            <span class="bisbas-label">回避</span>
+            <div class="bisbas-track">
+              <div id="bisbas-marker"></div>
+            </div>
+            <span class="bisbas-label">趋近</span>
+          </div>
+          <div id="brain-type-desc-zh" class="brain-type-desc-zh"></div>
+          <div id="brain-type-desc-en" class="brain-type-desc-en"></div>
+        </div>
+        <div class="stat-divider"></div>
+
         <div class="stat-row">
           <div class="stat-label-zh">总时长</div>
           <div class="stat-label-en">Time Played</div>
@@ -591,13 +695,17 @@
             <span class="chip-labels"><span class="chip-zh">压力</span><span class="chip-en">stress</span></span>
             <span class="chip-arrow" id="arrow-stress"></span>
           </div>
+          <div class="emotion-chip" id="chip-motivation">
+            <span class="chip-labels"><span class="chip-zh">动力</span><span class="chip-en">motivation</span></span>
+            <span class="chip-arrow" id="arrow-motivation"></span>
+          </div>
           <div class="emotion-chip" id="chip-focus">
             <span class="chip-labels"><span class="chip-zh">专注</span><span class="chip-en">focus</span></span>
             <span class="chip-arrow" id="arrow-focus"></span>
           </div>
-          <div class="emotion-chip" id="chip-cognitive">
-            <span class="chip-labels"><span class="chip-zh">认知</span><span class="chip-en">cognitive</span></span>
-            <span class="chip-arrow" id="arrow-cognitive"></span>
+          <div class="emotion-chip" id="chip-memory">
+            <span class="chip-labels"><span class="chip-zh">记忆</span><span class="chip-en">memory</span></span>
+            <span class="chip-arrow" id="arrow-memory"></span>
           </div>
           <div class="emotion-chip" id="chip-social">
             <span class="chip-labels"><span class="chip-zh">社交</span><span class="chip-en">social</span></span>
@@ -606,6 +714,10 @@
           <div class="emotion-chip" id="chip-creative">
             <span class="chip-labels"><span class="chip-zh">创意</span><span class="chip-en">creative</span></span>
             <span class="chip-arrow" id="arrow-creative"></span>
+          </div>
+          <div class="emotion-chip" id="chip-fluency">
+            <span class="chip-labels"><span class="chip-zh">流畅</span><span class="chip-en">fluency</span></span>
+            <span class="chip-arrow" id="arrow-fluency"></span>
           </div>
         </div>
         <div id="options-container"></div>
