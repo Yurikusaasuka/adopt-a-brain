@@ -1,0 +1,2094 @@
+{
+  "events": [
+    {
+      "id": "awake_at_night",
+      "level": 2,
+      "title_zh": "凌晨醒来，却毫无困意",
+      "title_en": "Wide Awake at Night",
+      "description_zh": "你在凌晨突然醒来，房间很安静，但困意已经不见了。",
+      "description_en": "You wake in the middle of the night. The room is quiet, but sleepiness is gone.",
+      "options": [
+        {
+          "text_zh": "闭眼躺着",
+          "text_en": "Keep lying with eyes closed",
+          "regionWeights": {
+            "prefrontal": -0.1,
+            "amygdala": 0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.0,
+            "cerebellum": 0.0,
+            "thalamus": -0.1,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "外界刺激降了下来，但大脑仍在安静地监控清醒状态。",
+          "feedback_en": "External input fades, but the brain is still quietly monitoring wakefulness."
+        },
+        {
+          "text_zh": "直接起床",
+          "text_en": "Get out of bed",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": 0.0,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.2,
+            "thalamus": 0.4,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "身体重新进入清醒模式，丘脑和行动系统开始接管。",
+          "feedback_en": "The body shifts back toward wakefulness. Thalamic and action systems come online."
+        },
+        {
+          "text_zh": "找点助眠音频",
+          "text_en": "Play some sleep audio",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": -0.2,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": 0.2,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "声音输入仍在，但情绪唤醒被慢慢压低。",
+          "feedback_en": "Auditory input remains, while emotional arousal gradually settles."
+        }
+      ]
+    },
+    {
+      "id": "alarm_still_sleepy",
+      "level": 1,
+      "title_zh": "被闹钟吵醒……还是好困",
+      "title_en": "The Alarm Goes Off... Still Sleepy",
+      "description_zh": "闹钟响了。你睁开眼睛，却感觉大脑还没有完全启动。",
+      "description_en": "The alarm rings. Your eyes open, but your brain still feels half asleep.",
+      "options": [
+        {
+          "text_zh": "直接坐起来",
+          "text_en": "Sit up immediately",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": 0.1,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.2,
+            "thalamus": 0.4,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "姿势和感觉输入一起改变，清醒度开始上升。",
+          "feedback_en": "Posture and sensory input shift together, and alertness starts to rise."
+        },
+        {
+          "text_zh": "再睡五分钟回笼觉",
+          "text_en": "Snooze for five more minutes",
+          "regionWeights": {
+            "prefrontal": -0.2,
+            "amygdala": -0.1,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": -0.2,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "大脑重新退回低唤醒状态，舒服，但清醒进程被暂停了。",
+          "feedback_en": "The brain drifts back toward low arousal. Comfortable, but wake-up is postponed."
+        },
+        {
+          "text_zh": "玩手机让自己清醒起来",
+          "text_en": "Use the phone to wake up",
+          "regionWeights": {
+            "prefrontal": -0.1,
+            "amygdala": 0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.4,
+            "cerebellum": 0.1,
+            "thalamus": 0.5,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "屏幕和新信息迅速提高感觉刺激，奖励回路也被抓住了。",
+          "feedback_en": "The screen and new information sharply increase sensory stimulation and engage reward circuits."
+        }
+      ]
+    },
+    {
+      "id": "breakfast_time",
+      "level": 1,
+      "title_zh": "早饭时间！",
+      "title_en": "Breakfast Time!",
+      "description_zh": "新的一天需要一点燃料。你准备怎么吃？",
+      "description_en": "A new day needs some fuel. What are you having?",
+      "options": [
+        {
+          "text_zh": "咖啡＋主食",
+          "text_en": "Coffee + a staple food",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": 0.1,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.5,
+            "cerebellum": 0.1,
+            "thalamus": 0.4,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "咖啡因和进食奖励一起把大脑推向更高的清醒度。",
+          "feedback_en": "Caffeine and food reward push the brain toward a more alert state."
+        },
+        {
+          "text_zh": "豆浆/牛奶＋主食",
+          "text_en": "Soy milk or milk + a staple food",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": 0.1,
+            "hippocampus": 0.3,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "没有强烈刺激，整体状态平稳地进入工作模式。",
+          "feedback_en": "Without a strong stimulant, the brain settles into a steady working state."
+        },
+        {
+          "text_zh": "减脂期，吃拌酸奶",
+          "text_en": "Diet phase: yogurt bowl",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": 0.1,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.1,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "长期目标压过了即时口腹奖励，控制系统占了上风。",
+          "feedback_en": "A longer-term goal outweighs immediate food reward, giving control systems the lead."
+        }
+      ]
+    },
+    {
+      "id": "brushing_teeth",
+      "level": 1,
+      "title_zh": "刷牙的时候",
+      "title_en": "While Brushing Your Teeth",
+      "description_zh": "你站在镜子前刷牙，大脑还在慢慢开机。",
+      "description_en": "You stand in front of the mirror brushing your teeth while your brain slowly boots up.",
+      "options": [
+        {
+          "text_zh": "机械地刷完",
+          "text_en": "Brush on autopilot",
+          "regionWeights": {
+            "prefrontal": 0.0,
+            "amygdala": 0.0,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.3,
+            "thalamus": 0.1,
+            "cingulate": 0.0
+          },
+          "feedback_zh": "熟练动作几乎自动完成，小脑接管了节奏和协调。",
+          "feedback_en": "The familiar routine runs almost automatically, with the cerebellum handling timing and coordination."
+        },
+        {
+          "text_zh": "对着镜子整理今天的计划",
+          "text_en": "Plan the day in the mirror",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": 0.0,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.1,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "前额叶开始排任务，扣带回把注意力拉回今天的目标。",
+          "feedback_en": "Prefrontal systems begin organizing tasks while cingulate control pulls attention toward today's goals."
+        },
+        {
+          "text_zh": "一边刷牙一边看手机",
+          "text_en": "Scroll while brushing",
+          "regionWeights": {
+            "prefrontal": -0.1,
+            "amygdala": 0.1,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.4,
+            "cerebellum": 0.2,
+            "thalamus": 0.4,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "自动动作继续运行，但注意力被屏幕和即时奖励分走了。",
+          "feedback_en": "The motor routine keeps running, while the screen and immediate rewards capture attention."
+        }
+      ]
+    },
+    {
+      "id": "ten_minutes_before_leaving",
+      "level": 1,
+      "title_zh": "出门前还有十分钟",
+      "title_en": "Ten Minutes Before Leaving",
+      "description_zh": "东西都收好了，但距离出门还有十分钟，床看起来很有吸引力。",
+      "description_en": "Everything is packed, but you still have ten minutes before leaving. The bed looks tempting.",
+      "options": [
+        {
+          "text_zh": "坐回床上休息五分钟",
+          "text_en": "Sit on the bed for five minutes",
+          "regionWeights": {
+            "prefrontal": -0.1,
+            "amygdala": -0.1,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.0,
+            "thalamus": -0.1,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "唤醒水平稍稍往下掉，即时舒适感占了上风。",
+          "feedback_en": "Arousal dips a little as immediate comfort takes priority."
+        },
+        {
+          "text_zh": "提前出门",
+          "text_en": "Leave early",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": -0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.2,
+            "thalamus": 0.2,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "计划被直接执行，控制系统和行动系统同步上线。",
+          "feedback_en": "The plan is executed immediately, engaging control and action systems together."
+        },
+        {
+          "text_zh": "在房间里再磨蹭一会儿",
+          "text_en": "Linger around the room",
+          "regionWeights": {
+            "prefrontal": -0.2,
+            "amygdala": 0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.1,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "行动被继续推迟，注意力在几个小刺激之间游移。",
+          "feedback_en": "Action is postponed as attention drifts among small distractions."
+        }
+      ]
+    },
+    {
+      "id": "running_late",
+      "level": 2,
+      "title_zh": "糟糕，好像快迟到了",
+      "title_en": "Running Late",
+      "description_zh": "看了一眼时间，你发现再不快点可能真的要迟到了。",
+      "description_en": "You check the time and realize you may actually be late unless you move fast.",
+      "options": [
+        {
+          "text_zh": "一路狂奔",
+          "text_en": "Run for it",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": 0.4,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.5,
+            "thalamus": 0.4,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "压力和运动同时拉高，身体协调与感觉警觉迅速增强。",
+          "feedback_en": "Stress and movement rise together, boosting coordination and sensory alertness."
+        },
+        {
+          "text_zh": "查一下最快路线",
+          "text_en": "Find the fastest route",
+          "regionWeights": {
+            "prefrontal": 0.6,
+            "amygdala": 0.2,
+            "hippocampus": 0.3,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.2,
+            "thalamus": 0.3,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "前额叶开始计算方案，紧迫感被转成了路线选择。",
+          "feedback_en": "Prefrontal planning converts urgency into route selection."
+        },
+        {
+          "text_zh": "算了，迟到就迟到吧",
+          "text_en": "Accept being late",
+          "regionWeights": {
+            "prefrontal": 0.0,
+            "amygdala": 0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": -0.1,
+            "cerebellum": 0.1,
+            "thalamus": 0.1,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "紧迫感仍在，但行动驱动明显下降。",
+          "feedback_en": "The urgency remains, but the drive to act drops sharply."
+        }
+      ]
+    },
+    {
+      "id": "last_seat_train",
+      "level": 1,
+      "title_zh": "地铁最后一个座位",
+      "title_en": "The Last Seat on the Train",
+      "description_zh": "车厢里只剩下一个空位，你刚好站在旁边。",
+      "description_en": "There is only one empty seat left in the carriage, and you are standing beside it.",
+      "options": [
+        {
+          "text_zh": "马上坐下",
+          "text_en": "Take it immediately",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.1,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.4,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "机会迅速转化成了即时舒适奖励。",
+          "feedback_en": "The opportunity is quickly converted into an immediate comfort reward."
+        },
+        {
+          "text_zh": "看看周围有没有更需要的人",
+          "text_en": "Check whether someone else needs it",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": 0.2,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.1,
+            "thalamus": 0.3,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "注意力转向周围的人，社会判断和冲突监控同时增加。",
+          "feedback_en": "Attention shifts toward others, increasing social evaluation and conflict monitoring."
+        },
+        {
+          "text_zh": "站着，懒得过去抢",
+          "text_en": "Just keep standing",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.0,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.2,
+            "thalamus": 0.1,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "没有明显冲突，身体维持原来的行动状态。",
+          "feedback_en": "With little conflict, the body simply maintains its current action state."
+        }
+      ]
+    },
+    {
+      "id": "loud_phone_commuter",
+      "level": 2,
+      "title_zh": "旁边的人一直在大声打电话",
+      "title_en": "A Loud Phone Call Beside You",
+      "description_zh": "通勤途中，旁边的人一直高声打电话，声音不断闯进你的注意力。",
+      "description_en": "Someone beside you keeps talking loudly on the phone and repeatedly captures your attention.",
+      "options": [
+        {
+          "text_zh": "戴上耳机隔绝声音",
+          "text_en": "Put on headphones",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": -0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.0,
+            "thalamus": -0.1,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "主动屏蔽刺激，情绪反应下降，注意控制重新占据主导。",
+          "feedback_en": "You block the stimulus, reducing emotional reactivity and restoring attentional control."
+        },
+        {
+          "text_zh": "默默忍着",
+          "text_en": "Endure it quietly",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": 0.3,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.0,
+            "cerebellum": 0.0,
+            "thalamus": 0.3,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "噪声持续进入，杏仁核和冲突监控维持在较高水平。",
+          "feedback_en": "The noise keeps entering, sustaining emotional reactivity and conflict monitoring."
+        },
+        {
+          "text_zh": "忍不住瞪他一眼",
+          "text_en": "Glare at them",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.5,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.1,
+            "thalamus": 0.3,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "不满迅速外显，情绪反应明显升高。",
+          "feedback_en": "Irritation becomes outwardly expressed, sharply raising emotional reactivity."
+        }
+      ]
+    },
+    {
+      "id": "nice_weather",
+      "level": 1,
+      "title_zh": "今天的天气意外地很好",
+      "title_en": "Unexpectedly Nice Weather",
+      "description_zh": "走出车站，空气和阳光都比预想中舒服。",
+      "description_en": "You leave the station and find the air and sunlight unexpectedly pleasant.",
+      "options": [
+        {
+          "text_zh": "停下来感受一下",
+          "text_en": "Pause and take it in",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.2,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.1,
+            "thalamus": 0.4,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "感觉输入和轻微奖励同时上升，注意力短暂落在当下。",
+          "feedback_en": "Sensory input and mild reward rise together as attention settles on the present."
+        },
+        {
+          "text_zh": "拍张照片",
+          "text_en": "Take a photo",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": 0.2,
+            "hippocampus": 0.3,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.1,
+            "thalamus": 0.4,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "视觉注意和记忆编码一起增强，这一刻被主动保存下来。",
+          "feedback_en": "Visual attention and memory encoding rise together as the moment is deliberately saved."
+        },
+        {
+          "text_zh": "没什么感觉，继续赶路",
+          "text_en": "Keep moving",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": 0.0,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.2,
+            "thalamus": 0.1,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "环境奖励被忽略，目标导向行为继续推进。",
+          "feedback_en": "The environmental reward is largely ignored as goal-directed behavior continues."
+        }
+      ]
+    },
+    {
+      "id": "morning_task_pile",
+      "level": 2,
+      "title_zh": "一打开电脑，今天有一堆事情要做",
+      "title_en": "A Pile of Tasks",
+      "description_zh": "刚开始工作，待处理的事情已经铺满了屏幕。",
+      "description_en": "You have barely started working, and the screen is already full of things to do.",
+      "options": [
+        {
+          "text_zh": "先列个待办清单",
+          "text_en": "Make a to-do list first",
+          "regionWeights": {
+            "prefrontal": 0.6,
+            "amygdala": 0.1,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "任务被重新组织，前额叶和冲突监控系统开始建立优先级。",
+          "feedback_en": "The tasks are reorganized as prefrontal and conflict-monitoring systems establish priorities."
+        },
+        {
+          "text_zh": "挑最简单的开始",
+          "text_en": "Start with the easiest one",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": 0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.4,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "低门槛任务迅速带来完成反馈，奖励系统获得启动信号。",
+          "feedback_en": "A low-friction task quickly produces completion feedback and engages the reward system."
+        },
+        {
+          "text_zh": "先回消息再说",
+          "text_en": "Reply to messages first",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.4,
+            "cerebellum": 0.1,
+            "thalamus": 0.4,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "新消息抓走注意力，任务规划暂时被即时反馈取代。",
+          "feedback_en": "New messages capture attention, temporarily replacing task planning with immediate feedback."
+        }
+      ]
+    },
+    {
+      "id": "hard_task_waiting",
+      "level": 2,
+      "title_zh": "那个最麻烦的任务",
+      "title_en": "The Hardest Task",
+      "description_zh": "有一个很麻烦的任务已经拖了一阵子，现在又出现在你面前。",
+      "description_en": "A difficult task you have been postponing is sitting in front of you again.",
+      "options": [
+        {
+          "text_zh": "趁早把它解决",
+          "text_en": "Tackle it now",
+          "regionWeights": {
+            "prefrontal": 0.6,
+            "amygdala": 0.2,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "控制系统压住回避倾向，注意力集中到解决问题上。",
+          "feedback_en": "Control systems suppress avoidance and direct attention toward solving the problem."
+        },
+        {
+          "text_zh": "再搜点资料准备充分",
+          "text_en": "Research a bit more first",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.1,
+            "hippocampus": 0.5,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.3,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "信息检索和记忆整合一起升高，为行动建立更多依据。",
+          "feedback_en": "Information search and memory integration rise together to build a stronger basis for action."
+        },
+        {
+          "text_zh": "继续往后拖",
+          "text_en": "Put it off again",
+          "regionWeights": {
+            "prefrontal": -0.2,
+            "amygdala": 0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "任务仍然制造轻微冲突，但执行控制选择暂时撤退。",
+          "feedback_en": "The task still creates mild conflict, but executive control retreats for now."
+        }
+      ]
+    },
+    {
+      "id": "notification_burst",
+      "level": 1,
+      "title_zh": "手机突然连续震了好多下",
+      "title_en": "A Burst of Notifications",
+      "description_zh": "手机接连弹出好几条新消息，你的注意力被瞬间拉走。",
+      "description_en": "Several notifications arrive in a row, instantly pulling your attention away.",
+      "options": [
+        {
+          "text_zh": "马上全部点开",
+          "text_en": "Open everything immediately",
+          "regionWeights": {
+            "prefrontal": -0.1,
+            "amygdala": 0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.5,
+            "cerebellum": 0.1,
+            "thalamus": 0.5,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "新奇刺激和即时反馈连续进入，奖励与感觉系统快速升高。",
+          "feedback_en": "Novel stimuli and immediate feedback arrive rapidly, driving reward and sensory systems upward."
+        },
+        {
+          "text_zh": "看一眼是谁，重要的再回",
+          "text_en": "Check who it is and triage",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.3,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "注意力先完成筛选，再把资源留给真正重要的信息。",
+          "feedback_en": "Attention first filters the signals, preserving resources for what actually matters."
+        },
+        {
+          "text_zh": "直接开勿扰模式",
+          "text_en": "Turn on Do Not Disturb",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": -0.1,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": -0.1,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "外界刺激被主动切断，执行控制重新保护当前任务。",
+          "feedback_en": "External stimulation is deliberately reduced as executive control protects the current task."
+        }
+      ]
+    },
+    {
+      "id": "stuck_on_problem",
+      "level": 2,
+      "title_zh": "一个问题卡了半天",
+      "title_en": "Stuck on a Problem",
+      "description_zh": "你已经盯着同一个问题很久了，答案还是没有出现。",
+      "description_en": "You have stared at the same problem for a long time, and the answer still has not appeared.",
+      "options": [
+        {
+          "text_zh": "继续死磕",
+          "text_en": "Keep pushing",
+          "regionWeights": {
+            "prefrontal": 0.6,
+            "amygdala": 0.3,
+            "hippocampus": 0.3,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.5
+          },
+          "feedback_zh": "前额叶和扣带回维持高负荷，挫败感也在不断累积。",
+          "feedback_en": "Prefrontal and cingulate systems stay under heavy load while frustration accumulates."
+        },
+        {
+          "text_zh": "去问别人",
+          "text_en": "Ask someone",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": 0.2,
+            "hippocampus": 0.3,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.1,
+            "thalamus": 0.3,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "问题从独立搜索切换到社会信息输入，新的线索进入工作记忆。",
+          "feedback_en": "The problem shifts from solo search to social input, bringing new cues into working memory."
+        },
+        {
+          "text_zh": "先做别的",
+          "text_en": "Switch to something else",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": -0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "冲突负荷下降，注意力被重新分配到新的目标。",
+          "feedback_en": "Conflict load decreases as attention is reassigned to a new target."
+        }
+      ]
+    },
+    {
+      "id": "unexpected_praise",
+      "level": 1,
+      "title_zh": "突然被夸了",
+      "title_en": "Unexpected Praise",
+      "description_zh": "有人突然说你刚才做得很好，你完全没有预料到。",
+      "description_en": "Someone unexpectedly tells you that you did a good job.",
+      "options": [
+        {
+          "text_zh": "开心地接受",
+          "text_en": "Accept it happily",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": 0.4,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.5,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "积极情绪和奖励信号一起升高，反馈被直接接住了。",
+          "feedback_en": "Positive emotion and reward signals rise together as the feedback is readily accepted."
+        },
+        {
+          "text_zh": "表面淡定，心里偷偷开心",
+          "text_en": "Stay calm but enjoy it inside",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": 0.2,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.4,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "奖励信号仍然存在，但外在表达被控制系统调节。",
+          "feedback_en": "Reward remains active, while control systems regulate its outward expression."
+        },
+        {
+          "text_zh": "第一反应是“真的吗？”",
+          "text_en": "First think, 'Really?'",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": 0.4,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.0,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "积极反馈没有立刻转成奖励，评价和不确定性监控先启动了。",
+          "feedback_en": "The positive feedback does not immediately become reward; evaluation and uncertainty monitoring come first."
+        }
+      ]
+    },
+    {
+      "id": "help_request",
+      "level": 2,
+      "title_zh": "突然有人来求助",
+      "title_en": "A Sudden Request for Help",
+      "description_zh": "同事或同学突然问你：“能帮我看一下这个吗？”",
+      "description_en": "A colleague or classmate suddenly asks, 'Can you take a look at this?'",
+      "options": [
+        {
+          "text_zh": "马上帮忙",
+          "text_en": "Help immediately",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": 0.3,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "注意力转向他人需求，社会情绪和合作奖励开始升高。",
+          "feedback_en": "Attention shifts toward another person's needs, increasing social emotion and cooperative reward."
+        },
+        {
+          "text_zh": "做完手上的事再帮",
+          "text_en": "Finish your task first, then help",
+          "regionWeights": {
+            "prefrontal": 0.6,
+            "amygdala": 0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.1,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "当前目标被保留下来，前额叶对任务顺序进行了明确控制。",
+          "feedback_en": "The current goal is preserved as prefrontal control sets a clear task order."
+        },
+        {
+          "text_zh": "找个理由拒绝",
+          "text_en": "Find a reason to decline",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "边界被主动维护，同时仍需要处理一定的社会冲突。",
+          "feedback_en": "A boundary is actively maintained while some social conflict still has to be managed."
+        }
+      ]
+    },
+    {
+      "id": "lunch_choice",
+      "level": 1,
+      "title_zh": "今天午饭吃什么？",
+      "title_en": "What for Lunch?",
+      "description_zh": "到了午饭时间，眼前有几种完全不同的选择。",
+      "description_en": "Lunch time arrives, with several very different options in front of you.",
+      "options": [
+        {
+          "text_zh": "吃最喜欢的",
+          "text_en": "Eat your favorite",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.2,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.6,
+            "cerebellum": 0.1,
+            "thalamus": 0.3,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "熟悉的味道迅速触发期待和奖励。",
+          "feedback_en": "A familiar favorite quickly triggers anticipation and reward."
+        },
+        {
+          "text_zh": "选个营养均衡的",
+          "text_en": "Choose something balanced",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": 0.1,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "即时口味和长期目标之间取得了更平衡的选择。",
+          "feedback_en": "The choice balances immediate taste with longer-term goals."
+        },
+        {
+          "text_zh": "随便买点最快的",
+          "text_en": "Grab whatever is fastest",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": 0.1,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.2,
+            "thalamus": 0.1,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "决策成本被压到最低，快速行动替代了复杂比较。",
+          "feedback_en": "Decision cost is minimized as quick action replaces extended comparison."
+        }
+      ]
+    },
+    {
+      "id": "new_dish",
+      "level": 1,
+      "title_zh": "一道从没吃过的菜",
+      "title_en": "A Dish You Have Never Tried",
+      "description_zh": "店里出现一道从来没有吃过的新菜，看起来有点陌生。",
+      "description_en": "A completely unfamiliar dish appears on the menu.",
+      "options": [
+        {
+          "text_zh": "就它了",
+          "text_en": "Try it",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": 0.2,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.5,
+            "cerebellum": 0.1,
+            "thalamus": 0.4,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "新奇感和可能的奖励一起拉高，感觉系统开始收集陌生信息。",
+          "feedback_en": "Novelty and possible reward rise together as sensory systems sample unfamiliar information."
+        },
+        {
+          "text_zh": "先看看评价",
+          "text_en": "Check reviews first",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.1,
+            "hippocampus": 0.3,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.3,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "探索被信息搜集包裹起来，决策系统先降低不确定性。",
+          "feedback_en": "Exploration is wrapped in information gathering as decision systems first reduce uncertainty."
+        },
+        {
+          "text_zh": "还是吃熟悉的",
+          "text_en": "Choose the familiar option",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": -0.1,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.1,
+            "thalamus": 0.1,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "不确定性被避开，熟悉经验提供了稳定的预期。",
+          "feedback_en": "Uncertainty is avoided, and familiar experience provides a stable expectation."
+        }
+      ]
+    },
+    {
+      "id": "post_lunch_sleepiness",
+      "level": 1,
+      "title_zh": "午后困意袭来",
+      "title_en": "Post-Lunch Sleepiness",
+      "description_zh": "吃完午饭以后，眼皮开始变重，注意力也慢慢往下掉。",
+      "description_en": "After lunch, your eyelids grow heavy and your attention begins to fade.",
+      "options": [
+        {
+          "text_zh": "睡二十分钟",
+          "text_en": "Take a 20-minute nap",
+          "regionWeights": {
+            "prefrontal": -0.1,
+            "amygdala": -0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": -0.2,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "感觉输入和执行活动降低，大脑短暂转向休息状态。",
+          "feedback_en": "Sensory input and executive activity decrease as the brain briefly shifts toward rest."
+        },
+        {
+          "text_zh": "出去走一圈",
+          "text_en": "Go for a walk",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": -0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.4,
+            "thalamus": 0.3,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "运动和环境刺激把清醒度重新拉高。",
+          "feedback_en": "Movement and environmental stimulation pull alertness back upward."
+        },
+        {
+          "text_zh": "再来杯咖啡",
+          "text_en": "Have another coffee",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": 0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.5,
+            "cerebellum": 0.1,
+            "thalamus": 0.4,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "促醒刺激和奖励期待一起上升，困意被暂时压了下去。",
+          "feedback_en": "Arousal and reward anticipation rise together, temporarily pushing sleepiness down."
+        }
+      ]
+    },
+    {
+      "id": "boring_meeting",
+      "level": 2,
+      "title_zh": "会议已经开了四十分钟",
+      "title_en": "Forty Minutes into a Boring Meeting",
+      "description_zh": "会议还没有讲到重点，你的注意力开始明显下滑。",
+      "description_en": "The meeting still has not reached the point, and your attention is clearly fading.",
+      "options": [
+        {
+          "text_zh": "强迫自己继续听",
+          "text_en": "Force yourself to keep listening",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.2,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.0,
+            "cerebellum": 0.0,
+            "thalamus": 0.2,
+            "cingulate": 0.5
+          },
+          "feedback_zh": "执行控制和冲突监控维持高负荷，把注意力硬拉回会议。",
+          "feedback_en": "Executive control and conflict monitoring stay heavily engaged to pull attention back."
+        },
+        {
+          "text_zh": "开始偷偷画画",
+          "text_en": "Start doodling",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": -0.1,
+            "hippocampus": 0.4,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.3,
+            "thalamus": 0.2,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "注意力从单调输入转向更自由的联想和动作节奏。",
+          "feedback_en": "Attention shifts from monotonous input toward freer association and motor rhythm."
+        },
+        {
+          "text_zh": "打开别的窗口干自己的事",
+          "text_en": "Open another window and do your own work",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": 0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.1,
+            "thalamus": 0.3,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "注意资源被重新分配到更有目标感的任务。",
+          "feedback_en": "Attentional resources are reassigned to a task with a clearer goal."
+        }
+      ]
+    },
+    {
+      "id": "sudden_idea",
+      "level": 1,
+      "title_zh": "灵感突然出现",
+      "title_en": "A Sudden Idea",
+      "description_zh": "做别的事情时，一个不错的点子突然闯进脑子。",
+      "description_en": "While doing something else, a promising idea suddenly pops into your head.",
+      "options": [
+        {
+          "text_zh": "马上记下来",
+          "text_en": "Write it down immediately",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.1,
+            "hippocampus": 0.4,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "灵感被迅速转成外部记录，工作记忆压力随之下降。",
+          "feedback_en": "The idea is quickly converted into an external record, reducing working-memory pressure."
+        },
+        {
+          "text_zh": "顺着它继续想",
+          "text_en": "Follow the idea further",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": 0.1,
+            "hippocampus": 0.6,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.5
+          },
+          "feedback_zh": "记忆联想继续扩展，思路沿着新方向展开。",
+          "feedback_en": "Memory associations expand while the thought develops in a new direction."
+        },
+        {
+          "text_zh": "等有空再说",
+          "text_en": "Leave it for later",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.0,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": 0.0,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "点子被轻轻放过，没有形成强烈的行动驱动。",
+          "feedback_en": "The idea is allowed to pass without generating much action drive."
+        }
+      ]
+    },
+    {
+      "id": "small_mistake",
+      "level": 2,
+      "title_zh": "发现了一个低级错误",
+      "title_en": "A Small Mistake",
+      "description_zh": "你刚刚发现自己犯了一个很基础的错误。",
+      "description_en": "You have just noticed a very basic mistake in your work.",
+      "options": [
+        {
+          "text_zh": "立刻修掉",
+          "text_en": "Fix it immediately",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.2,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "错误被快速识别并修正，控制系统直接接管。",
+          "feedback_en": "The error is quickly identified and corrected as control systems take over."
+        },
+        {
+          "text_zh": "复盘为什么会犯错",
+          "text_en": "Review why it happened",
+          "regionWeights": {
+            "prefrontal": 0.6,
+            "amygdala": 0.3,
+            "hippocampus": 0.5,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.5
+          },
+          "feedback_zh": "错误监控、记忆检索和规则更新同时增强。",
+          "feedback_en": "Error monitoring, memory retrieval, and rule updating all increase together."
+        },
+        {
+          "text_zh": "假装没看见",
+          "text_en": "Pretend not to notice",
+          "regionWeights": {
+            "prefrontal": -0.2,
+            "amygdala": 0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": 0.0,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "冲突并没有完全消失，但执行修正被主动推迟。",
+          "feedback_en": "The conflict does not fully disappear, but corrective action is postponed."
+        }
+      ]
+    },
+    {
+      "id": "afternoon_dessert",
+      "level": 1,
+      "title_zh": "下午茶甜点",
+      "title_en": "Afternoon Dessert",
+      "description_zh": "有人带来一盒甜点，正好放在你面前。",
+      "description_en": "Someone brings a box of desserts and sets it right in front of you.",
+      "options": [
+        {
+          "text_zh": "马上拿一个",
+          "text_en": "Take one immediately",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.2,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.6,
+            "cerebellum": 0.1,
+            "thalamus": 0.3,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "即时奖励几乎没有等待就被兑现。",
+          "feedback_en": "Immediate reward is cashed in with almost no delay."
+        },
+        {
+          "text_zh": "看半天，最后还是拿了",
+          "text_en": "Hesitate, then take one",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": 0.2,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.5,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "奖励驱动和自我控制短暂拉扯，最后奖励占了上风。",
+          "feedback_en": "Reward drive and self-control briefly compete, with reward eventually winning."
+        },
+        {
+          "text_zh": "忍住不吃",
+          "text_en": "Resist it",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.5
+          },
+          "feedback_zh": "即时奖励被压低，目标控制和冲突监控占据主导。",
+          "feedback_en": "Immediate reward is suppressed while goal control and conflict monitoring dominate."
+        }
+      ]
+    },
+    {
+      "id": "attention_drifting",
+      "level": 2,
+      "title_zh": "注意力开始到处乱跑",
+      "title_en": "Attention Starts Drifting",
+      "description_zh": "下午的工作变得越来越无聊，你已经很难一直盯着当前任务。",
+      "description_en": "The afternoon work is getting increasingly dull, and staying on task is becoming difficult.",
+      "options": [
+        {
+          "text_zh": "硬撑到做完",
+          "text_en": "Push through until it is done",
+          "regionWeights": {
+            "prefrontal": 0.6,
+            "amygdala": 0.3,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.0,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.5
+          },
+          "feedback_zh": "执行控制持续拉住注意力，但主观负荷也明显升高。",
+          "feedback_en": "Executive control keeps attention anchored, but subjective load rises noticeably."
+        },
+        {
+          "text_zh": "休息十分钟再继续",
+          "text_en": "Take a ten-minute break",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": -0.1,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.2,
+            "thalamus": 0.2,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "冲突负荷下降，注意系统得到短暂重置。",
+          "feedback_en": "Conflict load falls and the attentional system gets a brief reset."
+        },
+        {
+          "text_zh": "打开社交媒体",
+          "text_en": "Open social media",
+          "regionWeights": {
+            "prefrontal": 0.0,
+            "amygdala": 0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.5,
+            "cerebellum": 0.1,
+            "thalamus": 0.4,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "即时反馈和新奇刺激迅速接管了注意力。",
+          "feedback_en": "Immediate feedback and novelty rapidly take over attention."
+        }
+      ]
+    },
+    {
+      "id": "evening_invitation_message",
+      "level": 1,
+      "title_zh": "手机弹出一句“晚上有空吗？”",
+      "title_en": "A Message: 'Free Tonight?'",
+      "description_zh": "临近傍晚，手机突然收到一句简短的邀约。",
+      "description_en": "Near the end of the day, a short invitation suddenly appears on your phone.",
+      "options": [
+        {
+          "text_zh": "马上回复“有”",
+          "text_en": "Reply 'Yes' immediately",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": 0.4,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.4,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "社会期待和奖励预期一起升高，决定几乎瞬间完成。",
+          "feedback_en": "Social anticipation and reward expectation rise together, and the decision is made almost instantly."
+        },
+        {
+          "text_zh": "先看看自己今晚的安排",
+          "text_en": "Check your schedule first",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.1,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.1,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "前额叶先检查已有计划，再决定是否接受邀约。",
+          "feedback_en": "Prefrontal systems check existing plans before deciding whether to accept."
+        },
+        {
+          "text_zh": "假装暂时没看到",
+          "text_en": "Leave it unread for now",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "社交压力仍在后台存在，但回应行为被暂时推迟。",
+          "feedback_en": "Social pressure remains in the background while the response is postponed."
+        }
+      ]
+    },
+    {
+      "id": "last_task_before_leaving",
+      "level": 2,
+      "title_zh": "还剩最后一点事情没做完",
+      "title_en": "One Last Task",
+      "description_zh": "快到下班或下课时间了，但还有一小块工作没有结束。",
+      "description_en": "It is almost time to leave, but one small piece of work remains unfinished.",
+      "options": [
+        {
+          "text_zh": "今天一定做完",
+          "text_en": "Finish it today",
+          "regionWeights": {
+            "prefrontal": 0.6,
+            "amygdala": 0.2,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.5
+          },
+          "feedback_zh": "目标控制继续维持，疲劳下的冲突监控明显增强。",
+          "feedback_en": "Goal control stays engaged, with conflict monitoring increasing under fatigue."
+        },
+        {
+          "text_zh": "整理好，明天继续",
+          "text_en": "Organize it and continue tomorrow",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.0,
+            "hippocampus": 0.3,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.1,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "任务被整理成明天可继续的状态，控制负荷平稳收尾。",
+          "feedback_en": "The task is reorganized into a state that can be resumed tomorrow."
+        },
+        {
+          "text_zh": "直接关电脑",
+          "text_en": "Close the computer and leave",
+          "regionWeights": {
+            "prefrontal": 0.0,
+            "amygdala": -0.1,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.0,
+            "thalamus": 0.0,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "工作目标被迅速终止，控制负荷随之下降。",
+          "feedback_en": "The work goal is abruptly terminated, reducing control load."
+        }
+      ]
+    },
+    {
+      "id": "commute_home_energy",
+      "level": 1,
+      "title_zh": "回家路上还有点体力",
+      "title_en": "Still Some Energy Left",
+      "description_zh": "一天快结束了，但你发现自己好像还没有完全累透。",
+      "description_en": "The day is nearly over, but you still have a bit of energy left.",
+      "options": [
+        {
+          "text_zh": "多走一站路",
+          "text_en": "Walk one extra stop",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": -0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.5,
+            "thalamus": 0.3,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "运动协调和环境刺激一起增加，身体重新活跃起来。",
+          "feedback_en": "Motor coordination and environmental stimulation rise together as the body becomes active again."
+        },
+        {
+          "text_zh": "正常坐车回去",
+          "text_en": "Take the usual ride home",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": 0.0,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "大脑选择熟悉路线，整体激活保持平稳。",
+          "feedback_en": "The brain follows a familiar route and stays relatively steady."
+        },
+        {
+          "text_zh": "打车回去",
+          "text_en": "Take a taxi",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": -0.1,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.4,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "行动成本被直接换成舒适和便利的即时奖励。",
+          "feedback_en": "Effort is traded directly for the immediate reward of comfort and convenience."
+        }
+      ]
+    },
+    {
+      "id": "song_on_the_way_home",
+      "level": 1,
+      "title_zh": "路上突然听到喜欢的歌",
+      "title_en": "A Favorite Song on the Way Home",
+      "description_zh": "路过一家店时，里面突然放起一首你很喜欢的歌。",
+      "description_en": "As you pass a shop, a song you really like suddenly starts playing.",
+      "options": [
+        {
+          "text_zh": "一边走一边跟着节奏",
+          "text_en": "Move with the rhythm",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.3,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.5,
+            "cerebellum": 0.4,
+            "thalamus": 0.3,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "节奏、动作和奖励感同步起来，身体不自觉跟上了拍子。",
+          "feedback_en": "Rhythm, movement, and reward synchronize as the body naturally follows the beat."
+        },
+        {
+          "text_zh": "想起以前听这首歌的时候",
+          "text_en": "Recall when you used to hear it",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": 0.4,
+            "hippocampus": 0.6,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "音乐把旧记忆和情绪一起拉回当前体验。",
+          "feedback_en": "The music pulls old memories and emotion back into the present experience."
+        },
+        {
+          "text_zh": "没停留，继续赶路",
+          "text_en": "Keep walking",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": 0.0,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.2,
+            "thalamus": 0.1,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "音乐没有获得太多资源，目标导向行为继续推进。",
+          "feedback_en": "The music receives little processing priority as goal-directed movement continues."
+        }
+      ]
+    },
+    {
+      "id": "dinner_no_energy",
+      "level": 1,
+      "title_zh": "到家了，但完全不想做饭",
+      "title_en": "Home, but Too Tired to Cook",
+      "description_zh": "终于到家，肚子饿了，但做饭这件事看起来异常麻烦。",
+      "description_en": "You are finally home and hungry, but cooking feels unusually effortful.",
+      "options": [
+        {
+          "text_zh": "还是自己做",
+          "text_en": "Cook anyway",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": 0.1,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.3,
+            "thalamus": 0.2,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "计划、动作和延迟奖励一起维持住了做饭流程。",
+          "feedback_en": "Planning, action, and delayed reward work together to sustain the cooking process."
+        },
+        {
+          "text_zh": "点喜欢的外卖",
+          "text_en": "Order your favorite takeout",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.2,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.6,
+            "cerebellum": 0.1,
+            "thalamus": 0.3,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "低行动成本和高期待奖励迅速占据上风。",
+          "feedback_en": "Low effort and high anticipated reward quickly take the lead."
+        },
+        {
+          "text_zh": "找点剩下的东西随便吃",
+          "text_en": "Eat whatever is left",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": 0.0,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.2,
+            "thalamus": 0.1,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "决策和行动都被简化到最低限度。",
+          "feedback_en": "Both decision-making and action are simplified to the minimum."
+        }
+      ]
+    },
+    {
+      "id": "dishes_after_dinner",
+      "level": 1,
+      "title_zh": "桌上的碗正在看着你",
+      "title_en": "The Dishes Are Watching You",
+      "description_zh": "饭吃完了，桌上还留着一堆需要处理的碗。",
+      "description_en": "Dinner is over, and a pile of dishes is still waiting on the table.",
+      "options": [
+        {
+          "text_zh": "马上洗掉",
+          "text_en": "Wash them now",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.0,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.3,
+            "thalamus": 0.1,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "任务被立刻闭环，计划和动作系统顺利完成收尾。",
+          "feedback_en": "The task is closed immediately as planning and motor systems finish the routine."
+        },
+        {
+          "text_zh": "“等一下再洗”",
+          "text_en": "Wash them later",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.0,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.1,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "任务还挂在后台，但即时休息获得了优先级。",
+          "feedback_en": "The task remains in the background while immediate rest takes priority."
+        },
+        {
+          "text_zh": "留给明天的自己",
+          "text_en": "Leave them for tomorrow",
+          "regionWeights": {
+            "prefrontal": -0.2,
+            "amygdala": 0.1,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.0,
+            "thalamus": 0.0,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "执行控制退出，未完成事项只留下轻微冲突。",
+          "feedback_en": "Executive control disengages, leaving mild conflict from the unfinished task."
+        }
+      ]
+    },
+    {
+      "id": "friend_invites_out",
+      "level": 1,
+      "title_zh": "朋友临时约你出去",
+      "title_en": "A Last-Minute Invitation",
+      "description_zh": "朋友突然问你要不要现在出来见面，完全没有提前计划。",
+      "description_en": "A friend suddenly asks if you want to meet now, with no advance planning.",
+      "options": [
+        {
+          "text_zh": "换衣服出门",
+          "text_en": "Get changed and go out",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": 0.4,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.4,
+            "cerebellum": 0.2,
+            "thalamus": 0.3,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "社会期待、行动准备和奖励预期一起升高。",
+          "feedback_en": "Social anticipation, action preparation, and reward expectation rise together."
+        },
+        {
+          "text_zh": "问问还有谁",
+          "text_en": "Ask who else is going",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": 0.2,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "社交决定被推迟一步，信息评估先接管。",
+          "feedback_en": "The social decision is delayed while information evaluation takes over first."
+        },
+        {
+          "text_zh": "今天只想一个人待着",
+          "text_en": "Stay in tonight",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": -0.1,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.1,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "外部社交刺激被降低，注意力转回自己的内部状态。",
+          "feedback_en": "External social stimulation is reduced as attention turns toward your internal state."
+        }
+      ]
+    },
+    {
+      "id": "free_evening_time",
+      "level": 1,
+      "title_zh": "终于有一段自己的时间",
+      "title_en": "Finally, Some Free Time",
+      "description_zh": "晚上终于出现了一段没有任务、也没有人催你的空闲时间。",
+      "description_en": "At last, you have a stretch of evening with no tasks and no one demanding your attention.",
+      "options": [
+        {
+          "text_zh": "玩游戏",
+          "text_en": "Play a game",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.3,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.6,
+            "cerebellum": 0.3,
+            "thalamus": 0.3,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "即时反馈、动作和奖励循环迅速占据主导。",
+          "feedback_en": "Immediate feedback, action, and reward loops quickly take the lead."
+        },
+        {
+          "text_zh": "看书/学点东西",
+          "text_en": "Read or learn something",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.1,
+            "hippocampus": 0.5,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.3,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "注意控制和记忆编码一起升高，空闲时间被转成了学习输入。",
+          "feedback_en": "Attentional control and memory encoding rise together as free time becomes learning time."
+        },
+        {
+          "text_zh": "什么都不做，发呆",
+          "text_en": "Do nothing and daydream",
+          "regionWeights": {
+            "prefrontal": 0.2,
+            "amygdala": -0.1,
+            "hippocampus": 0.4,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.1,
+            "thalamus": 0.1,
+            "cingulate": 0.5
+          },
+          "feedback_zh": "外部目标减弱，记忆联想和内部思维开始自由游走。",
+          "feedback_en": "External goals weaken as memory associations and internally directed thought begin to wander."
+        }
+      ]
+    },
+    {
+      "id": "lost_game_close",
+      "level": 2,
+      "title_zh": "就差一点点就赢了",
+      "title_en": "So Close to Winning",
+      "description_zh": "游戏结束了，你离胜利只差最后一点。",
+      "description_en": "The game ends, and you were only a tiny step away from winning.",
+      "options": [
+        {
+          "text_zh": "再来一局",
+          "text_en": "Play one more round",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.4,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.6,
+            "cerebellum": 0.3,
+            "thalamus": 0.3,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "挫败和奖励期待叠在一起，马上再试一次的驱动力升高。",
+          "feedback_en": "Frustration combines with reward expectation, increasing the drive to try again."
+        },
+        {
+          "text_zh": "想想刚才哪里出了问题",
+          "text_en": "Analyze what went wrong",
+          "regionWeights": {
+            "prefrontal": 0.6,
+            "amygdala": 0.2,
+            "hippocampus": 0.3,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "情绪反应被转成错误分析和策略更新。",
+          "feedback_en": "The emotional response is converted into error analysis and strategy updating."
+        },
+        {
+          "text_zh": "关掉游戏",
+          "text_en": "Close the game",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": -0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "奖励循环被主动截断，继续尝试的冲动被终止。",
+          "feedback_en": "The reward loop is deliberately cut off, ending the urge to keep trying."
+        }
+      ]
+    },
+    {
+      "id": "cringe_memory",
+      "level": 2,
+      "title_zh": "大脑突然播放黑历史",
+      "title_en": "An Old Cringe Memory Returns",
+      "description_zh": "毫无征兆地，你突然想起很多年前一个非常尴尬的瞬间。",
+      "description_en": "Without warning, you suddenly remember an extremely embarrassing moment from years ago.",
+      "options": [
+        {
+          "text_zh": "在床上扭曲一分钟",
+          "text_en": "Cringe for a minute",
+          "regionWeights": {
+            "prefrontal": 0.0,
+            "amygdala": 0.5,
+            "hippocampus": 0.5,
+            "basal_ganglia": 0.0,
+            "cerebellum": 0.2,
+            "thalamus": 0.1,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "旧记忆和情绪反应一起被重新点亮，身体也跟着做出反应。",
+          "feedback_en": "Old memory and emotional reactivity flare together, with the body joining the response."
+        },
+        {
+          "text_zh": "重新想想，其实也没那么严重",
+          "text_en": "Reframe it",
+          "regionWeights": {
+            "prefrontal": 0.6,
+            "amygdala": -0.2,
+            "hippocampus": 0.5,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.5
+          },
+          "feedback_zh": "前额叶重新解释旧记忆，情绪强度被主动调低。",
+          "feedback_en": "Prefrontal systems reinterpret the old memory and actively reduce its emotional intensity."
+        },
+        {
+          "text_zh": "强迫自己想点别的",
+          "text_en": "Force yourself to think of something else",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": -0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.3,
+            "cerebellum": 0.1,
+            "thalamus": 0.2,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "注意力被强行切换，情绪反应暂时失去输入。",
+          "feedback_en": "Attention is forcibly redirected, temporarily depriving the emotional response of input."
+        }
+      ]
+    },
+    {
+      "id": "important_tomorrow",
+      "level": 2,
+      "title_zh": "明天有一件很重要的事情",
+      "title_en": "Something Important Tomorrow",
+      "description_zh": "准备休息时，你想到明天还有一件不能忘的重要事情。",
+      "description_en": "As you begin winding down, you remember something important that cannot be missed tomorrow.",
+      "options": [
+        {
+          "text_zh": "提前把东西准备好",
+          "text_en": "Prepare everything now",
+          "regionWeights": {
+            "prefrontal": 0.6,
+            "amygdala": 0.1,
+            "hippocampus": 0.3,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.2,
+            "thalamus": 0.2,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "未来目标被转成具体行动，计划系统完成了一次提前闭环。",
+          "feedback_en": "A future goal is converted into concrete action, allowing planning systems to close the loop early."
+        },
+        {
+          "text_zh": "在脑子里过一遍流程",
+          "text_en": "Mentally rehearse it",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.2,
+            "hippocampus": 0.5,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "记忆和计划系统一起模拟明天可能发生的流程。",
+          "feedback_en": "Memory and planning systems simulate the sequence likely to happen tomorrow."
+        },
+        {
+          "text_zh": "明天的自己会处理的",
+          "text_en": "Leave it to tomorrow-you",
+          "regionWeights": {
+            "prefrontal": -0.1,
+            "amygdala": 0.1,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.0,
+            "thalamus": 0.0,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "计划被延后，当前大脑选择即时卸载。",
+          "feedback_en": "Planning is deferred as the current brain chooses immediate relief."
+        }
+      ]
+    },
+    {
+      "id": "phone_three_percent",
+      "level": 1,
+      "title_zh": "手机只剩 3% 电",
+      "title_en": "Three Percent Battery",
+      "description_zh": "手机只剩最后一点电，人也差不多快没电了。",
+      "description_en": "Your phone is down to its last few percent, and so are you.",
+      "options": [
+        {
+          "text_zh": "插上电继续玩",
+          "text_en": "Plug it in and keep using it",
+          "regionWeights": {
+            "prefrontal": -0.1,
+            "amygdala": 0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.5,
+            "cerebellum": 0.1,
+            "thalamus": 0.4,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "电量问题解决后，即时刺激和奖励继续占据注意力。",
+          "feedback_en": "Once the battery problem is solved, immediate stimulation and reward keep occupying attention."
+        },
+        {
+          "text_zh": "插上电，准备睡觉",
+          "text_en": "Plug it in and get ready to sleep",
+          "regionWeights": {
+            "prefrontal": 0.4,
+            "amygdala": -0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": -0.2,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "设备和一天的任务一起进入收尾，外界刺激开始降低。",
+          "feedback_en": "The device and the day are both put into shutdown mode as external stimulation decreases."
+        },
+        {
+          "text_zh": "懒得充，明早再说",
+          "text_en": "Leave it for the morning",
+          "regionWeights": {
+            "prefrontal": -0.1,
+            "amygdala": 0.0,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": 0.0,
+            "cingulate": 0.1
+          },
+          "feedback_zh": "未来问题被推迟，当前几乎没有额外行动投入。",
+          "feedback_en": "The future problem is postponed with almost no additional action investment."
+        }
+      ]
+    },
+    {
+      "id": "bedtime_choices",
+      "level": 1,
+      "title_zh": "已经该睡了",
+      "title_en": "Time for Bed",
+      "description_zh": "你终于躺到床上，接下来做什么会决定这个晚上怎么结束。",
+      "description_en": "You are finally in bed, and what you do next will shape how the night ends.",
+      "options": [
+        {
+          "text_zh": "直接关灯闭眼",
+          "text_en": "Turn off the light and close your eyes",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": -0.2,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": -0.2,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "外部刺激迅速下降，控制系统开始把状态切向休息。",
+          "feedback_en": "External stimulation drops quickly as control systems shift the state toward rest."
+        },
+        {
+          "text_zh": "看一会儿书",
+          "text_en": "Read for a while",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": -0.1,
+            "hippocampus": 0.4,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "感觉输入保持温和，注意和记忆系统仍有轻度活动。",
+          "feedback_en": "Sensory input stays mild while attention and memory systems remain lightly active."
+        },
+        {
+          "text_zh": "“只刷五分钟手机”",
+          "text_en": "Scroll for 'just five minutes'",
+          "regionWeights": {
+            "prefrontal": -0.1,
+            "amygdala": 0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.5,
+            "cerebellum": 0.1,
+            "thalamus": 0.4,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "屏幕、新信息和即时奖励重新把清醒度拉了回来。",
+          "feedback_en": "The screen, new information, and immediate reward pull alertness back upward."
+        }
+      ]
+    },
+    {
+      "id": "remembered_something_in_bed",
+      "level": 2,
+      "title_zh": "刚闭眼，突然想起一件事",
+      "title_en": "One More Thing",
+      "description_zh": "你刚闭上眼睛，大脑突然提醒：“等等，你是不是忘了什么？”",
+      "description_en": "Just after closing your eyes, your brain suddenly says, 'Wait, did you forget something?'",
+      "options": [
+        {
+          "text_zh": "立刻起来确认",
+          "text_en": "Get up and check",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": 0.3,
+            "hippocampus": 0.2,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.2,
+            "thalamus": 0.3,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "不确定性触发行动，感觉和控制系统重新被拉回清醒状态。",
+          "feedback_en": "Uncertainty triggers action, pulling sensory and control systems back toward wakefulness."
+        },
+        {
+          "text_zh": "记在手机里，明天处理",
+          "text_en": "Write it down for tomorrow",
+          "regionWeights": {
+            "prefrontal": 0.5,
+            "amygdala": -0.1,
+            "hippocampus": 0.3,
+            "basal_ganglia": 0.1,
+            "cerebellum": 0.0,
+            "thalamus": 0.1,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "任务被外部记录接住，工作记忆和焦虑负荷随之下降。",
+          "feedback_en": "The task is offloaded into an external note, reducing working-memory and anxiety load."
+        },
+        {
+          "text_zh": "告诉自己别想了",
+          "text_en": "Tell yourself to stop thinking about it",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": 0.1,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.0,
+            "cerebellum": 0.0,
+            "thalamus": 0.0,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "控制系统试图压住未完成事项，但仍保留一定冲突监控。",
+          "feedback_en": "Control systems try to suppress the unfinished concern while conflict monitoring remains active."
+        }
+      ]
+    },
+    {
+      "id": "cant_fall_asleep",
+      "level": 2,
+      "title_zh": "躺了一会儿，还是睡不着",
+      "title_en": "Still Can't Fall Asleep",
+      "description_zh": "已经躺了一阵子，困意依然没有出现。",
+      "description_en": "You have been lying down for a while, but sleepiness still has not arrived.",
+      "options": [
+        {
+          "text_zh": "继续强迫自己睡",
+          "text_en": "Keep trying to force sleep",
+          "regionWeights": {
+            "prefrontal": 0.1,
+            "amygdala": 0.2,
+            "hippocampus": 0.1,
+            "basal_ganglia": 0.0,
+            "cerebellum": 0.0,
+            "thalamus": -0.1,
+            "cingulate": 0.4
+          },
+          "feedback_zh": "外界刺激不高，但对“必须睡着”的监控仍然持续。",
+          "feedback_en": "External stimulation stays low, but monitoring of the need to fall asleep remains active."
+        },
+        {
+          "text_zh": "起床做点安静的事",
+          "text_en": "Get up and do something quiet",
+          "regionWeights": {
+            "prefrontal": 0.3,
+            "amygdala": -0.1,
+            "hippocampus": 0.3,
+            "basal_ganglia": 0.2,
+            "cerebellum": 0.1,
+            "thalamus": 0.1,
+            "cingulate": 0.3
+          },
+          "feedback_zh": "状态从无效等待切换成低刺激活动，情绪负荷有所下降。",
+          "feedback_en": "The state shifts from unproductive waiting to a low-stimulation activity, reducing emotional load."
+        },
+        {
+          "text_zh": "打开手机刷到困",
+          "text_en": "Scroll until sleepy",
+          "regionWeights": {
+            "prefrontal": -0.1,
+            "amygdala": 0.2,
+            "hippocampus": 0.0,
+            "basal_ganglia": 0.5,
+            "cerebellum": 0.1,
+            "thalamus": 0.4,
+            "cingulate": 0.2
+          },
+          "feedback_zh": "即时奖励和屏幕刺激继续维持清醒状态。",
+          "feedback_en": "Immediate reward and screen stimulation continue to support wakefulness."
+        }
+      ]
+    }
+  ]
+}
