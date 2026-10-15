@@ -15,8 +15,21 @@ const EVENT_MAX_MS = 6000;
 let nextEventInterval = EVENT_MIN_MS;
 
 export async function loadEvents() {
-  const res  = await fetch('./data/events.json');
-  const data = await res.json();
+  const eventUrl = new URL('./data/events.json', import.meta.url);
+  const res = await fetch(eventUrl);
+  if (!res.ok) {
+    throw new Error(`事件数据请求失败（HTTP ${res.status}）`);
+  }
+
+  let data;
+  try {
+    data = await res.json();
+  } catch (_) {
+    throw new Error('事件数据格式无效');
+  }
+  if (!Array.isArray(data.events) || data.events.length === 0) {
+    throw new Error('事件数据为空或缺少 events 列表');
+  }
   allEvents  = data.events;
   shuffleQueue();
 }

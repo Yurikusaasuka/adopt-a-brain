@@ -13,6 +13,9 @@ const menuSaveInfo      = document.getElementById('menu-save-info');
 const menuContinueBtn   = document.getElementById('menu-continue-btn');
 const menuNewBrainBtn   = document.getElementById('menu-newbrain-btn');
 const clearSaveBtn      = document.getElementById('clear-save-btn');
+const loadErrorSection  = document.getElementById('load-error');
+const loadErrorDetail   = document.getElementById('load-error-detail');
+const loadRetryBtn      = document.getElementById('load-retry-btn');
 
 const nameInput    = document.getElementById('name-input');
 const nameSubmit   = document.getElementById('name-submit');
@@ -78,7 +81,9 @@ function loadSaveData() {
 }
 
 function clearSaveData() {
-  localStorage.removeItem(SAVE_KEY);
+  try {
+    localStorage.removeItem(SAVE_KEY);
+  } catch (_) {}
 }
 
 function applySaveData(save) {
@@ -212,6 +217,13 @@ function hideMenuScreen() {
   menuScreen.style.display = 'none';
 }
 
+function confirmReset() {
+  return window.confirm(
+    '这会永久删除当前大脑的本地存档并重新开始。是否继续？\n\n' +
+    'This permanently deletes the current local save. Continue?'
+  );
+}
+
 // Continue (unpause)
 menuContinueBtn.addEventListener('click', () => {
   hideMenuScreen();
@@ -220,6 +232,7 @@ menuContinueBtn.addEventListener('click', () => {
 
 // New Brain — no reload; reset state in-place and show name prompt
 menuNewBrainBtn.addEventListener('click', () => {
+  if (!confirmReset()) return;
   clearSaveData();
   resetState();
   hideMenuScreen();
@@ -228,6 +241,7 @@ menuNewBrainBtn.addEventListener('click', () => {
 
 // Clear Save — same as New Brain
 clearSaveBtn.addEventListener('click', () => {
+  if (!confirmReset()) return;
   clearSaveData();
   resetState();
   hideMenuScreen();
@@ -370,6 +384,8 @@ setFeedbackCallback((zh, en) => {
 
 setSaveCallback(saveGame);
 
+loadRetryBtn.addEventListener('click', () => window.location.reload());
+
 // ── Game loop ─────────────────────────────────────────────────────────────────
 let lastTime = 0;
 
@@ -396,9 +412,20 @@ function loop(timestamp) {
 // Rule: menuScreen is shown here ONLY when there is NO save (fresh player).
 // When a save exists, we auto-restore and skip the menu entirely.
 async function boot() {
-  await loadEvents();
-  initBackground(canvasBG);
-  initRenderer(canvasBrain, canvasEEG, canvasFMRI, canvasAxial);
+  try {
+    await loadEvents();
+    initBackground(canvasBG);
+    initRenderer(canvasBrain, canvasEEG, canvasFMRI, canvasAxial);
+  } catch (error) {
+    console.error('[Adopt-a-Brain] Failed to load event data:', error);
+    menuResumeSection.style.display = 'none';
+    menuNewSection.style.display = 'none';
+    clearSaveBtn.style.display = 'none';
+    loadErrorDetail.textContent = error instanceof Error ? error.message : '未知错误';
+    loadErrorSection.style.display = 'flex';
+    menuScreen.style.display = 'flex';
+    return;
+  }
 
   const save = loadSaveData();
   if (save) {
