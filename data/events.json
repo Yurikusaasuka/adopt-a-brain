@@ -185,8 +185,8 @@
             "thalamus": 0.1,
             "cingulate": 0.0
           },
-          "feedback_zh": "熟练的运动序列由小脑自动执行，皮层参与程度极低。",
-          "feedback_en": "The practiced motor sequence runs automatically via the cerebellum with minimal cortical involvement."
+          "feedback_zh": "熟练动作依赖分布式运动回路；游戏用较强的小脑协调信号和较弱的基底核习惯信号来简化表示。",
+          "feedback_en": "Practiced actions rely on distributed motor circuits; the game simplifies this as a stronger cerebellar coordination signal and a smaller basal-ganglia habit signal."
         },
         {
           "text_zh": "对着镜子整理今天的计划",
@@ -215,8 +215,8 @@
             "thalamus": 0.4,
             "cingulate": 0.1
           },
-          "feedback_zh": "运动程序在小脑层面自动运行，皮层注意资源被视觉信息和即时奖励占用。",
-          "feedback_en": "The motor program runs automatically at the cerebellar level while cortical attention resources are occupied by visual input and immediate reward."
+          "feedback_zh": "熟练动作继续由分布式运动与习惯回路支持，同时视觉信息和即时反馈争夺注意资源。",
+          "feedback_en": "Distributed motor and habit circuits continue supporting the practiced action while visual input and immediate feedback compete for attention."
         }
       ]
     },
@@ -295,8 +295,8 @@
             "thalamus": 0.4,
             "cingulate": 0.3
           },
-          "feedback_zh": "应激反应和运动输出同时增强，小脑协调和丘脑感觉警觉水平迅速上升。",
-          "feedback_en": "Stress response and motor output increase together, rapidly elevating cerebellar coordination and thalamic sensory alertness."
+          "feedback_zh": "应激反应和运动输出同时增强；游戏以小脑协调信号和丘脑感觉中继信号的上升来表示这一状态。",
+          "feedback_en": "Stress and motor output rise together; the game represents this with stronger cerebellar coordination and thalamic sensory-relay signals."
         },
         {
           "text_zh": "抓紧时间查一下最快路线",
@@ -710,8 +710,8 @@
             "thalamus": 0.2,
             "cingulate": 0.3
           },
-          "feedback_zh": "冲突监控负荷下降，注意资源被重新分配至新的目标表征。",
-          "feedback_en": "Conflict monitoring load decreases as attentional resources are reassigned to a new goal representation."
+          "feedback_zh": "注意资源从原问题转向新的目标，模型仍保留一定的任务切换与冲突监控信号。",
+          "feedback_en": "Attention shifts from the original problem to a new goal, while the model retains some task-switching and conflict-monitoring signal."
         }
       ]
     },
@@ -1245,8 +1245,8 @@
             "thalamus": 0.2,
             "cingulate": 0.3
           },
-          "feedback_zh": "冲突监控负荷下降，注意系统得到短暂重置。",
-          "feedback_en": "Conflict monitoring load decreases and the attentional system receives a brief reset."
+          "feedback_zh": "注意从原任务转向短暂休息，模型仍保留重新定向与返回任务所需的控制信号。",
+          "feedback_en": "Attention shifts from the task to a short break, while the model retains control signals for reorienting and returning to the task."
         },
         {
           "text_zh": "打开社交媒体",
@@ -1370,8 +1370,8 @@
             "thalamus": 0.0,
             "cingulate": 0.1
           },
-          "feedback_zh": "工作目标表征被中断，前额叶控制负荷随之下降。",
-          "feedback_en": "The work goal representation is interrupted, and prefrontal control load decreases accordingly."
+          "feedback_zh": "工作目标表征不再继续增强，当前模型转而记录结束任务带来的低强度奖励信号。",
+          "feedback_en": "The work-goal representation is no longer strengthened; the model instead records a low-intensity reward signal from ending the task."
         }
       ]
     },
@@ -1740,8 +1740,8 @@
             "thalamus": 0.2,
             "cingulate": 0.4
           },
-          "feedback_zh": "情绪反应被转化为错误分析过程，前额叶和海马体协同进行策略检索与更新。",
-          "feedback_en": "Emotional response is converted into an error analysis process as prefrontal and hippocampal systems cooperate on strategy retrieval and updating."
+          "feedback_zh": "前额叶相关控制过程转向错误分析，海马相关记忆检索为策略复盘提供情境线索。",
+          "feedback_en": "Prefrontal control processes shift toward error analysis, while hippocampal memory retrieval supplies contextual details for reviewing the strategy."
         },
         {
           "text_zh": "直接关掉游戏",
@@ -1755,8 +1755,8 @@
             "thalamus": 0.1,
             "cingulate": 0.3
           },
-          "feedback_zh": "奖励循环被主动中断，持续尝试的驱动倾向随之终止。",
-          "feedback_en": "The reward loop is deliberately interrupted, terminating the drive tendency to keep attempting."
+          "feedback_zh": "继续尝试的奖励预期不再主导，控制信号转向结束当前游戏。",
+          "feedback_en": "Reward expectation for another attempt no longer dominates, and control signals shift toward ending the game."
         }
       ]
     },
@@ -2030,8 +2030,8 @@
             "thalamus": 0.0,
             "cingulate": 0.4
           },
-          "feedback_zh": "扣带回主动抑制未完成任务的冲突信号，但低强度监控仍在维持。",
-          "feedback_en": "The cingulate cortex actively suppresses the conflict signal from the unfinished task, though low-intensity monitoring continues."
+          "feedback_zh": "未完成任务仍带来低强度冲突监控；游戏将其表示为持续的扣带皮层相关信号。",
+          "feedback_en": "The unfinished task still produces low-intensity conflict monitoring, represented in the game as a continuing cingulate-related signal."
         }
       ]
     },

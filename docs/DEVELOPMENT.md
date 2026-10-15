@@ -128,7 +128,7 @@ focus      = prefrontal × 0.65 + cingulate × 0.35
 memory     = hippocampus × 0.70 + prefrontal × 0.30
 social     = amygdala × 0.50 + prefrontal × 0.50
 creative   = prefrontal × 0.40 + cingulate × 0.35 + hippocampus × 0.25
-fluency    = cerebellum × 0.80 + thalamus × 0.20
+fluency    = cerebellum × 0.80 + thalamus × 0.20  # UI 显示为“动作流畅”
 ```
 
 最多保留 200 帧情绪历史，供渲染器比较近期趋势。以上只是游戏规则，不应解释为神经科学测量模型。
@@ -145,7 +145,7 @@ limbic    = amygdala × 0.45 + hippocampus × 0.35 + basal_ganglia × 0.20
 cortical  = prefrontal × 0.55 + cingulate × 0.45
 ```
 
-总分小于 `0.5` 时不产生分类。否则取最高层（平分时按代码中的爬行层、边缘层、皮层优先顺序），再计算趋近/回避比例：
+总分小于 `0.5` 时不产生分类。否则取最高轴（平分时按内部键 `reptilian`、`limbic`、`cortical` 的顺序处理），再计算趋近/回避比例。界面将三个遗留内部键显示为“动作倾向”“情绪记忆”“认知控制”；它们不是三位一体脑模型或真实解剖层级：
 
 ```text
 BAS = basal_ganglia × 0.55 + prefrontal × 0.45
